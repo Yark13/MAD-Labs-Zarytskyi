@@ -1,0 +1,89 @@
+<resources>
+    <string name="app_name">TraineesOfVeres</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="date_format"></string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_password_again">Password again</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="log_in">"Log in"</string>
+    <string name="sign_up">"Sign up"</string>
+    <string name="back">"Back"</string>
+    <string name="name">"Name"</string>
+    <string name="surname">Surname</string>
+    <string name="age">"Age"</string>
+    <string name="profile">Profile</string>
+    <string name="profile_name">Name:</string>
+    <string name="profile_email">Email:</string>
+    <string name="profile_age">"Age:"</string>
+    <string name="profile_score">Score:</string>
+    <string name="test_data_for_profile_surname_and_name">Trainee number 0</string>
+    <string name="test_data_for_profile_email">theBestTrainee@gmail.com</string>
+    <string name="test_data_for_profile_age">22</string>
+    <string name="test_data_for_profile_score">347</string>
+    <string name="save">save</string>
+    <string name="greeting">Welcome to community \"Trainees of our lord and savior Mr. Veres\"!</string>
+    <string name="test_data_for_place_in_top">You are on the 34th place in the top!!</string>
+
+    <string-array name="quotes">
+        <item>The only limit to our realization of tomorrow is our doubts of today.</item>
+        <item>Do not watch the clock. Do what it does. Keep going.</item>
+        <item>Success is not final, failure is not fatal: It is the courage to continue that counts.</item>
+        <item>Believe you can and you`re halfway there.</item>
+        <item>Act as if what you do makes a difference. It does.</item>
+    </string-array>
+
+    <string-array name="dates">
+        <item>10.10.2010</item>
+        <item>11.11.2011</item>
+        <item>12.12.2012</item>
+        <item>16.02.2013</item>
+        <item>06.04.2014</item>
+    </string-array>
+
+    <string-array name="names">
+        <item>John</item>
+        <item>Jane</item>
+        <item>Alex</item>
+        <item>Chris</item>
+        <item>Pat</item>
+        <item>Jordan</item>
+        <item>Taylor</item>
+    </string-array>
+
+    <string-array name="surnames">
+        <item>Smith</item>
+        <item>Doe</item>
+        <item>Brown</item>
+        <item>Johnson</item>
+        <item>Lee</item>
+        <item>Garcia</item>
+        <item>Martinez</item>
+    </string-array>
+
+    <string-array name="ages">
+        <item>18</item>
+        <item>20</item>
+        <item>22</item>
+        <item>24</item>
+        <item>27</item>
+        <item>29</item>
+        <item>19</item>
+    </string-array>
+
+    <string-array name="scores">
+        <item>2700</item>
+        <item>2100</item>
+        <item>1500</item>
+        <item>900</item>
+        <item>750</item>
+        <item>450</item>
+        <item>300</item>
+    </string-array>
+
+</resources>
