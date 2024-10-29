@@ -9,6 +9,8 @@ public class TraineeModel extends Model{
 
     public String Email;
 
+    public String Password;
+
     public int Age;
 
     public int Score;
