@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+        <config>
+          <theme>@style/Theme.TraineesOfVeres</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+        <config>
+          <theme>@style/Theme.TraineesOfVeres</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml">
+        <config>
+          <theme>@style/Theme.TraineesOfVeres</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml">
+        <config>
+          <theme>@style/Theme.TraineesOfVeres</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_quotes.xml">
+        <config>
+          <theme>@style/Theme.TraineesOfVeres</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tap_like.xml">
+        <config>
+          <theme>@style/Theme.TraineesOfVeres</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_top_list.xml">
+        <config>
+          <theme>@style/Theme.TraineesOfVeres</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/quotes_recycler_view_row.xml">
+        <config>
+          <theme>@style/Theme.TraineesOfVeres</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/trainees_recycler_view_row.xml">
+        <config>
+          <theme>@style/Theme.TraineesOfVeres</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_bar.xml">
+        <config>
+          <theme>@style/Theme.TraineesOfVeres</theme>
+        </config>
+      </layout>
+    </layouts>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="62ba8234-6101-4286-94a9-104fecdb18c3" name="Changes" comment="Lab2 ready">
+      <change afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/Domain/DALInterfaces/IRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/Domain/DALInterfaces/IUnitOfWork.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/Domain/Models/Model.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/Domain/Models/QuoteModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/Domain/Models/TraineeModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/migrations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/.idea/migrations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/proguard-rules.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/example/traineesofveres/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/androidTest/java/com/example/traineesofveres/ExampleInstrumentedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/icon-playstore.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/icon-playstore.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/ui/login/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/ui/login/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/ui/profile/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/ui/profile/ProfileFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/ui/profile/ProfileViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/ui/profile/ProfileViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/ui/quotes/QuoteViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/ui/quotes/QuoteViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/ui/quotes/QuotesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/ui/quotes/QuotesAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/ui/quotes/QuotesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/ui/quotes/QuotesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/ui/signup/SignUpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/ui/signup/SignUpActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/ui/taplike/TapLikeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/ui/taplike/TapLikeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/ui/taplike/TapLikeViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/ui/taplike/TapLikeViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/ui/toplist/TopListFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/ui/toplist/TopListFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/ui/toplist/TopListViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/ui/toplist/TopListViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/ui/trainee/TraineeViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/ui/trainee/TraineeViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traineesofveres/ui/trainee/TraineesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/java/com/example/traineesofveres/ui/trainee/TraineesAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/drawable/ic_launcher_foreground.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/drawable/icon_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/drawable/icon_foreground.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/like.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/drawable/like.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/pay_tribute.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/drawable/pay_tribute.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/drawable/profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/quotes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/drawable/quotes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/top.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/drawable/top.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/layout/activity_sign_up.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/layout/fragment_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_quotes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/layout/fragment_quotes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_tap_like.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/layout/fragment_tap_like.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_top_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/layout/fragment_top_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/quotes_recycler_view_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/layout/quotes_recycler_view_row.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/trainees_recycler_view_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/layout/trainees_recycler_view_row.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_bar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/menu/bottom_nav_bar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/icon.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-anydpi-v26/icon.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/icon_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-anydpi-v26/icon_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/icon.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-hdpi/icon.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/icon_foreground.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-hdpi/icon_foreground.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/icon_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-hdpi/icon_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/icon.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-mdpi/icon.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/icon_foreground.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-mdpi/icon_foreground.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/icon_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-mdpi/icon_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icon.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xhdpi/icon.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icon_foreground.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xhdpi/icon_foreground.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icon_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xhdpi/icon_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/icon.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xxhdpi/icon.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/icon_foreground.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xxhdpi/icon_foreground.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/icon_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xxhdpi/icon_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/icon.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xxxhdpi/icon.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/icon_foreground.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xxxhdpi/icon_foreground.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/icon_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/mipmap-xxxhdpi/icon_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/values/dimens.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/backup_rules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/xml/backup_rules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/data_extraction_rules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/main/res/xml/data_extraction_rules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/traineesofveres/ExampleUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/app/src/test/java/com/example/traineesofveres/ExampleUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_2-5/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Screens/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Screens/Lab2/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Screens/listquotes.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Screens/Lab2/listquotes.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Screens/login.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Screens/Lab2/login.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Screens/profile.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Screens/Lab2/profile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Screens/signup.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Screens/Lab2/signup.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Screens/taplike.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Screens/Lab2/taplike.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Screens/toplist.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Screens/Lab2/toplist.png" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=D:\Program\Users\AppData\Local\.android\MyPhone.avd)]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="resourceFile" />
+        <option value="layoutResourceFile" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2nWKA7uAODmjvl3z481s4vB8f6h" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Android App.app.executor": "Run",
+    "Gradle.Load Gradle Dependencies.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "Lab3",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Subjects/7 semester/Additional subject/lab2-5/MAD-Labs-Zarytskyi/Lab_2-5",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater",
+    "show.migrate.to.gradle.popup": "false"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="android.template.-1425388071">
+      <recent name="com.example.traineesofveres.ui.signup" />
+      <recent name="com.example.traineesofveres" />
+      <recent name="com.example.traineesofveres.ui.login" />
+      <recent name="com.example.traineesofveres.ui.quotes" />
+      <recent name="com.example.traineesofveres.ui.paytribute" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Program\Users\AppData\Local\AndroidStudioProjects\Lab_2\app\src\main\res\layout" />
+      <recent name="D:\Program\Users\AppData\Local\AndroidStudioProjects\Lab_2\app\src\main\res\layout\nav-menu-items" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="TraineesOfVeres.app.main" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="62ba8234-6101-4286-94a9-104fecdb18c3" name="Changes" comment="" />
+      <created>1729083245717</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729083245717</updated>
+    </task>
+    <task id="LOCAL-00001" summary="trainees_recycler_view_row ui adjusted">
+      <option name="closed" value="true" />
+      <created>1729944537350</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1729944537350</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Lab2 ready">
+      <option name="closed" value="true" />
+      <created>1729955651961</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729955651961</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Lab2 ready">
+      <option name="closed" value="true" />
+      <created>1729960232366</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729960232366</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="development" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="trainees_recycler_view_row ui adjusted" />
+    <MESSAGE value="Lab2 ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lab2 ready" />
+  </component>
+</project>
