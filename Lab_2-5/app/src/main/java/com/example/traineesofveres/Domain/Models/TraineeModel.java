@@ -1,7 +1,5 @@
 package com.example.traineesofveres.Domain.Models;
 
-import android.provider.ContactsContract;
-
 public class TraineeModel extends Model{
     public String Name;
 
@@ -14,4 +12,6 @@ public class TraineeModel extends Model{
     public int Age;
 
     public int Score;
+
+    public int Rank;
 }
