@@ -3,7 +3,7 @@ package com.example.traineesofveres.Domain.Services.TraineeService;
 import com.example.traineesofveres.Domain.Security.IPasswordManager;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
 import com.example.traineesofveres.Domain.DALInterfaces.IUnitOfWork;
-import com.example.traineesofveres.Domain.Models.TraineeModel;
+import com.example.traineesofveres.DTO.Domain.TraineeModel;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -23,7 +23,7 @@ public class TraineeService implements ITraineeService{
     }
 
     @Override
-    // Return trainee list with size topCount+1 where last element are trainee with traineeId
+    /** Return trainee list with size topCount+1 where last element are trainee with traineeId**/
     public ArrayList<TraineeModel> GetTop(int topCount, int traineeId) {
 
         if(topCount < 1 || traineeId < 1)

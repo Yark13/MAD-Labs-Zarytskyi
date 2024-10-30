@@ -1,12 +1,12 @@
 package com.example.traineesofveres.Domain.DALInterfaces;
 
-import com.example.traineesofveres.Domain.Models.Model;
-import com.example.traineesofveres.Domain.Models.TraineeModel;
+import com.example.traineesofveres.DTO.Domain.TraineeModel;
+import com.example.traineesofveres.DTO.Infrastructure.Entity;
 
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
-public interface IRepository<T extends Model> {
+public interface IRepository<T extends Entity> {
     ArrayList<T> GetAll();
 
     ArrayList<T> GetAll(Predicate<T> filter);

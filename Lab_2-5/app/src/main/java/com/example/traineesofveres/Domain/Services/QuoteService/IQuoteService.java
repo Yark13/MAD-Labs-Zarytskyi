@@ -1,6 +1,6 @@
 package com.example.traineesofveres.Domain.Services.QuoteService;
 
-import com.example.traineesofveres.Domain.Models.QuoteModel;
+import com.example.traineesofveres.DTO.Domain.QuoteModel;
 
 import java.util.ArrayList;
 

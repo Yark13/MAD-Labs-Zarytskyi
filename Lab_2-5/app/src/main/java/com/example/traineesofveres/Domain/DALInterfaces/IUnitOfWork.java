@@ -1,9 +1,9 @@
 package com.example.traineesofveres.Domain.DALInterfaces;
 
-import com.example.traineesofveres.Domain.Models.Model;
+import com.example.traineesofveres.DTO.Infrastructure.Entity;
 
 public interface IUnitOfWork {
-    <T extends Model> IRepository<T> GetRepository();
+    <T extends Entity> IRepository<T> GetRepository();
 
     void SaveChanges();
 }
