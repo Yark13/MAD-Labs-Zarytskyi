@@ -1,5 +1,7 @@
 package com.example.traineesofveres.Domain.Services.TraineeService;
 
+import com.example.traineesofveres.DTO.Domain.QuoteModel;
+import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 import com.example.traineesofveres.Domain.Security.IPasswordManager;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
 import com.example.traineesofveres.Domain.DALInterfaces.IUnitOfWork;
@@ -12,7 +14,7 @@ import java.util.regex.Pattern;
 
 public class TraineeService implements ITraineeService{
     private final IUnitOfWork _unitOfWork;
-    private final IRepository<TraineeModel> _repository;
+    private final IRepository<Trainee> _repository;
     private final IPasswordManager _passwordManager;
 
     public TraineeService(IUnitOfWork unitOfWork, IPasswordManager passwordManager) {
@@ -23,7 +25,6 @@ public class TraineeService implements ITraineeService{
     }
 
     @Override
-    /** Return trainee list with size topCount+1 where last element are trainee with traineeId**/
     public ArrayList<TraineeModel> GetTop(int topCount, int traineeId) {
 
         if(topCount < 1 || traineeId < 1)
@@ -38,11 +39,14 @@ public class TraineeService implements ITraineeService{
             throw  new NullPointerException("email and password cannot be null or empty");
         
         String hashedPassword = _passwordManager.HashPassword(password);
-        Predicate<TraineeModel> filter = trainee ->
+        Predicate<Trainee> filter = trainee ->
                 trainee.Email.equals(email) &&
                 trainee.Password.equals(hashedPassword);
 
-        return _repository.GetAll(filter).get(0);
+        return new TraineeModel(
+                        _repository
+                            .GetAll(filter)
+                            .get(0));
     }
 
     @Override
@@ -52,7 +56,9 @@ public class TraineeService implements ITraineeService{
         if(!IsTraineeModelCorrectlyFilled(trainee) || trainee.Id != 0)
             return null;
 
-        TraineeModel result = _repository.Add(trainee);
+        TraineeModel result = new TraineeModel(
+                                    _repository.Add(
+                                            new Trainee(trainee)));
         _unitOfWork.SaveChanges();
 
         return result;
@@ -65,7 +71,9 @@ public class TraineeService implements ITraineeService{
         if(!IsTraineeModelCorrectlyFilled(trainee) || trainee.Id == 0)
             return null;
 
-        TraineeModel result = _repository.Update(trainee);
+        TraineeModel result = new TraineeModel(
+                                    _repository.Update(
+                                            new Trainee(trainee)));
         _unitOfWork.SaveChanges();
 
         return result;
