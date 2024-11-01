@@ -1,4 +1,4 @@
-package com.example.traineesofveres.ui.quotes;
+package com.example.traineesofveres.DTO.Aplication;
 
 import androidx.lifecycle.ViewModel;
 

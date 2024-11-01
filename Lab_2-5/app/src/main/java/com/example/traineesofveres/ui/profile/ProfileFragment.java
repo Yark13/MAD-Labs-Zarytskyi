@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.traineesofveres.MainActivity;
 import com.example.traineesofveres.R;
 import com.example.traineesofveres.ui.login.LoginActivity;
 

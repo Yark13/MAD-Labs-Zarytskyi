@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.traineesofveres.DTO.Aplication.TraineeViewModel;
 import com.example.traineesofveres.R;
 
 import java.util.ArrayList;

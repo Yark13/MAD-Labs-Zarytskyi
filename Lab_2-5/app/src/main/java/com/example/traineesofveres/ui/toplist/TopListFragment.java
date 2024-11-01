@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.traineesofveres.R;
-import com.example.traineesofveres.ui.trainee.TraineeViewModel;
+import com.example.traineesofveres.DTO.Aplication.TraineeViewModel;
 import com.example.traineesofveres.ui.trainee.TraineesAdapter;
 
 import java.util.ArrayList;

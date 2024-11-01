@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.traineesofveres.DTO.Aplication.QuoteViewModel;
 import com.example.traineesofveres.R;
 
 import androidx.annotation.NonNull;

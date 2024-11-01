@@ -1,4 +1,4 @@
-package com.example.traineesofveres;
+package com.example.traineesofveres.ui;
 
 import android.os.Bundle;
 
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.traineesofveres.R;
 import com.example.traineesofveres.databinding.ActivityMainBinding;
 import com.example.traineesofveres.ui.profile.ProfileFragment;
 import com.example.traineesofveres.ui.quotes.QuotesFragment;

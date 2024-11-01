@@ -1,6 +1,4 @@
-package com.example.traineesofveres.ui.trainee;
-
-import android.provider.ContactsContract;
+package com.example.traineesofveres.DTO.Aplication;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;

@@ -12,11 +12,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.traineesofveres.MainActivity;
+import com.example.traineesofveres.ui.MainActivity;
 import com.example.traineesofveres.R;
 import com.example.traineesofveres.ui.signup.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity {
+
+    //private TraineeService _service;
 
     private Button _logInBottom, _signUpButton;
     private EditText _emailTextBox;
@@ -46,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         _logInBottom.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+
+
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
