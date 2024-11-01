@@ -14,13 +14,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.traineesofveres.Domain.Services.TraineeService.ITraineeService;
 import com.example.traineesofveres.R;
 import com.example.traineesofveres.DTO.Aplication.TraineeViewModel;
-import com.example.traineesofveres.Application.UI.trainee.TraineesAdapter;
+import com.example.traineesofveres.Application.UI.adapters.TraineesAdapter;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class TopListFragment extends Fragment {
+
+    @Inject
+    ITraineeService _service;
 
     private ArrayList<TraineeViewModel> _traineesModel = new ArrayList<TraineeViewModel>();
     private TopListViewModel mViewModel;

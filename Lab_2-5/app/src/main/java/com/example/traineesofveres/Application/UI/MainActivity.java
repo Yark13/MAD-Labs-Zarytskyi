@@ -18,6 +18,9 @@ import com.example.traineesofveres.Application.UI.toplist.TopListFragment;
 import java.util.HashMap;
 import java.util.Map;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;

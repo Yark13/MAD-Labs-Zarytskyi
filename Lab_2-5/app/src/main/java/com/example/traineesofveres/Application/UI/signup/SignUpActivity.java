@@ -11,10 +11,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.traineesofveres.Domain.Services.TraineeService.ITraineeService;
 import com.example.traineesofveres.R;
 import com.example.traineesofveres.Application.UI.login.LoginActivity;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class SignUpActivity extends AppCompatActivity {
+
+    @Inject
+    ITraineeService _service;
 
     private Button _signUpButton;
     private Button _backToLoginActivityButton;

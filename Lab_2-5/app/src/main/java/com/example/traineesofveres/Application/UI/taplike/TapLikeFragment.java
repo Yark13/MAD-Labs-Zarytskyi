@@ -12,9 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.traineesofveres.Domain.Services.TraineeService.ITraineeService;
 import com.example.traineesofveres.R;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class TapLikeFragment extends Fragment {
+
+    @Inject
+    ITraineeService _service;
 
     private TapLikeViewModel mViewModel;
 

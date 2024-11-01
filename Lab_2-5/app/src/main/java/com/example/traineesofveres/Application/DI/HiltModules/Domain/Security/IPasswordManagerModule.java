@@ -1,4 +1,4 @@
-package com.example.traineesofveres.Application.DI.HiltModules;
+package com.example.traineesofveres.Application.DI.HiltModules.Domain.Security;
 
 import com.example.traineesofveres.Domain.Security.IPasswordManager;
 import com.example.traineesofveres.Domain.Security.PasswordManager;

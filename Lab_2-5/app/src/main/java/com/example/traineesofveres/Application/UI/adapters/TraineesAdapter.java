@@ -1,4 +1,4 @@
-package com.example.traineesofveres.Application.UI.trainee;
+package com.example.traineesofveres.Application.UI.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

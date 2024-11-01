@@ -14,10 +14,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.traineesofveres.Domain.Services.TraineeService.ITraineeService;
 import com.example.traineesofveres.R;
 import com.example.traineesofveres.Application.UI.login.LoginActivity;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class ProfileFragment extends Fragment {
+
+    @Inject
+    ITraineeService _service;
 
     private ProfileViewModel mViewModel;
     private Button _exitButtom, _saveButton;
