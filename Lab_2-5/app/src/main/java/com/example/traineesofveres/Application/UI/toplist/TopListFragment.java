@@ -1,4 +1,4 @@
-package com.example.traineesofveres.ui.toplist;
+package com.example.traineesofveres.Application.UI.toplist;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.traineesofveres.R;
 import com.example.traineesofveres.DTO.Aplication.TraineeViewModel;
-import com.example.traineesofveres.ui.trainee.TraineesAdapter;
+import com.example.traineesofveres.Application.UI.trainee.TraineesAdapter;
 
 import java.util.ArrayList;
 

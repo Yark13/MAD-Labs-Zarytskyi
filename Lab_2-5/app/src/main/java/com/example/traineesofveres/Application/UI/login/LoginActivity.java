@@ -1,4 +1,4 @@
-package com.example.traineesofveres.ui.login;
+package com.example.traineesofveres.Application.UI.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +12,20 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.traineesofveres.ui.MainActivity;
+import com.example.traineesofveres.Domain.Services.TraineeService.ITraineeService;
+import com.example.traineesofveres.Application.UI.MainActivity;
 import com.example.traineesofveres.R;
-import com.example.traineesofveres.ui.signup.SignUpActivity;
+import com.example.traineesofveres.Application.UI.signup.SignUpActivity;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class LoginActivity extends AppCompatActivity {
 
-    //private TraineeService _service;
+    @Inject
+    ITraineeService _service;
 
     private Button _logInBottom, _signUpButton;
     private EditText _emailTextBox;
@@ -48,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
         _logInBottom.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-
 
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);

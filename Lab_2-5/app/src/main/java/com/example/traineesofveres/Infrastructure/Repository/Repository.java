@@ -7,11 +7,7 @@ import com.example.traineesofveres.DTO.Infrastructure.Entity;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
-public class Repository<T extends Entity> implements IRepository {
-
-
-    public Repository() {
-    }
+public class Repository<T extends Entity> implements IRepository<T> {
 
     @Override
     public ArrayList<T> GetAll() {
@@ -19,17 +15,17 @@ public class Repository<T extends Entity> implements IRepository {
     }
 
     @Override
-    public ArrayList<T>  GetAll(Predicate filter) {
+    public ArrayList<T> GetAll(Predicate<T> filter) {
         return null;
     }
 
     @Override
-    public ArrayList<T>  GetAll(int skip, int take) {
+    public ArrayList<T> GetAll(int skip, int take) {
         return null;
     }
 
     @Override
-    public ArrayList<T>  GetAll(Predicate filter, int skip, int take) {
+    public ArrayList<T> GetAll(Predicate<T> filter, int skip, int take) {
         return null;
     }
 
@@ -44,15 +40,14 @@ public class Repository<T extends Entity> implements IRepository {
     }
 
     @Override
-    public Entity Add(Entity entity) {
+    public T Add(T entity) {
         return null;
     }
 
     @Override
-    public Entity Update(Entity entity) {
+    public T Update(T entity) {
         return null;
     }
-
 
     @Override
     public void Delete() {

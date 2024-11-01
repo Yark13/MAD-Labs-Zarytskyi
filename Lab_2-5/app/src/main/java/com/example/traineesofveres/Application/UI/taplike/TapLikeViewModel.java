@@ -1,4 +1,4 @@
-package com.example.traineesofveres.ui.taplike;
+package com.example.traineesofveres.Application.UI.taplike;
 
 import androidx.lifecycle.ViewModel;
 

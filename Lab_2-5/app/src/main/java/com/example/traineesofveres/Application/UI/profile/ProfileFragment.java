@@ -1,4 +1,4 @@
-package com.example.traineesofveres.ui.profile;
+package com.example.traineesofveres.Application.UI.profile;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.traineesofveres.R;
-import com.example.traineesofveres.ui.login.LoginActivity;
+import com.example.traineesofveres.Application.UI.login.LoginActivity;
 
 public class ProfileFragment extends Fragment {
 

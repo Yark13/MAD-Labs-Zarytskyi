@@ -1,4 +1,4 @@
-package com.example.traineesofveres.ui.profile;
+package com.example.traineesofveres.Application.UI.profile;
 
 import androidx.lifecycle.ViewModel;
 

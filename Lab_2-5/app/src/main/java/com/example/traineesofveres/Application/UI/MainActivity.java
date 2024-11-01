@@ -1,4 +1,4 @@
-package com.example.traineesofveres.ui;
+package com.example.traineesofveres.Application.UI;
 
 import android.os.Bundle;
 
@@ -10,10 +10,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.traineesofveres.R;
 import com.example.traineesofveres.databinding.ActivityMainBinding;
-import com.example.traineesofveres.ui.profile.ProfileFragment;
-import com.example.traineesofveres.ui.quotes.QuotesFragment;
-import com.example.traineesofveres.ui.taplike.TapLikeFragment;
-import com.example.traineesofveres.ui.toplist.TopListFragment;
+import com.example.traineesofveres.Application.UI.profile.ProfileFragment;
+import com.example.traineesofveres.Application.UI.quotes.QuotesFragment;
+import com.example.traineesofveres.Application.UI.taplike.TapLikeFragment;
+import com.example.traineesofveres.Application.UI.toplist.TopListFragment;
 
 import java.util.HashMap;
 import java.util.Map;

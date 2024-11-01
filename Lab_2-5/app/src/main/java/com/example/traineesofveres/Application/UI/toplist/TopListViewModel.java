@@ -1,4 +1,4 @@
-package com.example.traineesofveres.ui.toplist;
+package com.example.traineesofveres.Application.UI.toplist;
 
 import androidx.lifecycle.ViewModel;
 

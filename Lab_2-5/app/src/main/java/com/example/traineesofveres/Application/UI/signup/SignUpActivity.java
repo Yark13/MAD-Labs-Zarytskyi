@@ -1,4 +1,4 @@
-package com.example.traineesofveres.ui.signup;
+package com.example.traineesofveres.Application.UI.signup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.traineesofveres.R;
-import com.example.traineesofveres.ui.login.LoginActivity;
+import com.example.traineesofveres.Application.UI.login.LoginActivity;
 
 public class SignUpActivity extends AppCompatActivity {
 
