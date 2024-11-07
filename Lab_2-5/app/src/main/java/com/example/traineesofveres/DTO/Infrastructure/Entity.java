@@ -1,5 +1,5 @@
 package com.example.traineesofveres.DTO.Infrastructure;
 
-public class Entity {
+public abstract class Entity {
     public int Id;
 }

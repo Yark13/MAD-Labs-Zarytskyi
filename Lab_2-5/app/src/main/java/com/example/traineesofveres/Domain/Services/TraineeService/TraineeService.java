@@ -21,7 +21,7 @@ public class TraineeService implements ITraineeService{
         _unitOfWork = Objects.requireNonNull(unitOfWork);
         _passwordManager = Objects.requireNonNull(passwordManager);
 
-        _repository = _unitOfWork.GetRepository();
+        _repository = _unitOfWork.GetRepository(Trainee.class);
     }
 
     @Override

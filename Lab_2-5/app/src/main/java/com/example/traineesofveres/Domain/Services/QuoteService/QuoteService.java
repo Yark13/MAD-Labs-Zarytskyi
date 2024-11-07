@@ -15,7 +15,7 @@ public class QuoteService implements IQuoteService {
 
     public QuoteService(IUnitOfWork unitOfWork) {
         _unitOfWork = Objects.requireNonNull(unitOfWork, "unit of work cannot be null");
-        _repository = _unitOfWork.GetRepository();
+        _repository = _unitOfWork.GetRepository(Quote.class);
     }
 
 

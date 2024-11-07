@@ -19,4 +19,15 @@ public class Quote extends Entity{
         Text = quoteModel.Text;;
         DateOfPublication = quoteModel.DateOfPublication;
     }
+
+    public static String GetDatabaseTableName() {
+        return "quotes";
+    }
+
+    public static String GetDatabaseTableParameters() {
+        return "id INTEGER PRIMARY KEY," +
+                "text TEXT, " +
+                "traineePublisherId INTEGER, " +
+                "dateOfPublication TEXT";
+    }
 }

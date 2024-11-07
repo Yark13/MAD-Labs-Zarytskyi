@@ -2,9 +2,6 @@ package com.example.traineesofveres.Application.DI.HiltModules;
 
 import android.content.Context;
 
-import com.example.traineesofveres.Domain.DALInterfaces.IUnitOfWork;
-import com.example.traineesofveres.Infrastructure.UnitOfWork.UnitOfWork;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -15,11 +12,10 @@ import dagger.hilt.components.SingletonComponent;
 
 @Module
 @InstallIn(SingletonComponent.class)
-public class IUnitOfWorkModule {
-
+public class AppModule {
     @Provides
     @Singleton
-    public static IUnitOfWork provideUnitOfWork(Context context){
-        return new UnitOfWork(context);
+    public Context provideContext(@ApplicationContext Context context) {
+        return context;
     }
 }

@@ -27,4 +27,18 @@ public class Trainee extends Entity {
         Age = traineeModel.Age;
         Score = traineeModel.Score;
     }
+
+    public static String GetDatabaseTableName() {
+        return "trainees";
+    }
+
+    public static String GetDatabaseTableParameters() {
+        return "id INTEGER PRIMARY KEY, " +
+                "name TEXT, " +
+                "surname TEXT, " +
+                "email TEXT, " +
+                "password TEXT, " +
+                "age INTEGER, " +
+                "score INTEGER";
+    }
 }
