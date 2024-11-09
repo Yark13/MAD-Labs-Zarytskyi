@@ -16,8 +16,10 @@ public class UnitOfWork implements IUnitOfWork {
     private final SQLiteDatabase _database;
     private final RepositoryFactory _repoFactory;
 
-    public UnitOfWork(Context context) {
-        _dbHelper = new DatabaseHelper(context);
+    public UnitOfWork(SQLiteOpenHelper dbHelper) {
+
+
+        _dbHelper = dbHelper;
         _database = _dbHelper.getWritableDatabase();
         _repoFactory = new RepositoryFactory(_database);
     }

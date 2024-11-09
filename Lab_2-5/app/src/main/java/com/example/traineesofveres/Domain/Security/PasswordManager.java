@@ -9,6 +9,6 @@ public class PasswordManager implements IPasswordManager{
 
     @Override
     public String HashPassword(String password) {
-        return "";
+        return password;
     }
 }

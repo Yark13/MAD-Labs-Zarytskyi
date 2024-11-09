@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 
 public class Repository<T extends Entity> {
 
-    private final SQLiteDatabase _database;
+    protected final SQLiteDatabase _database;
 
     public Repository(SQLiteDatabase database) {
         this._database = database;

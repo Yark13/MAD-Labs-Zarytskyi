@@ -10,6 +10,18 @@ import java.util.ArrayList;
 import java.util.function.Predicate;
 
 public class QuoteRepository extends Repository<Quote> implements IRepository<Quote> {
+
+    public static String GetDatabaseTableName() {
+        return "quotes";
+    }
+
+    public static String GetDatabaseTableParameters() {
+        return "id INTEGER PRIMARY KEY," +
+                "text TEXT, " +
+                "traineePublisherId INTEGER, " +
+                "dateOfPublication TEXT";
+    }
+
     public QuoteRepository(SQLiteDatabase database) {
         super(database);
     }
@@ -55,7 +67,7 @@ public class QuoteRepository extends Repository<Quote> implements IRepository<Qu
     }
 
     @Override
-    public void Delete() {
+    public void Delete(int id) {
 
     }
 }

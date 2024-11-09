@@ -8,6 +8,7 @@ import com.example.traineesofveres.Domain.DALInterfaces.IUnitOfWork;
 import com.example.traineesofveres.DTO.Domain.TraineeModel;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -43,10 +44,12 @@ public class TraineeService implements ITraineeService{
                 trainee.Email.equals(email) &&
                 trainee.Password.equals(hashedPassword);
 
-        return new TraineeModel(
-                        _repository
-                            .GetAll(filter)
-                            .get(0));
+        List<Trainee> trainees = _repository.GetAll(filter);
+
+        return (trainees.size() == 0)? null : new TraineeModel(
+                    _repository
+                        .GetAll(filter)
+                        .get(0));
     }
 
     @Override

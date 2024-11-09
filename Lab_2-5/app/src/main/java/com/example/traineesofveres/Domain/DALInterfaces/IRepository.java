@@ -23,5 +23,5 @@ public interface IRepository<T extends Entity> {
 
     T Update(T entity);
 
-    void Delete();
+    void Delete(int id);
 }

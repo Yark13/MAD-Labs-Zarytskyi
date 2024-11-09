@@ -1,10 +1,12 @@
 package com.example.traineesofveres.Application.UI.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +14,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.traineesofveres.DTO.Domain.TraineeModel;
 import com.example.traineesofveres.Domain.Services.TraineeService.ITraineeService;
 import com.example.traineesofveres.Application.UI.MainActivity;
+import com.example.traineesofveres.Infrastructure.DatabaseHelper;
 import com.example.traineesofveres.R;
 import com.example.traineesofveres.Application.UI.signup.SignUpActivity;
 
@@ -55,9 +59,22 @@ public class LoginActivity extends AppCompatActivity {
         _logInBottom.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                String email = _emailTextBox.getText().toString();
+                String password = _password.getText().toString();
 
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
+                if(email.isEmpty() || password.isEmpty()){
+                    Toast.makeText(getApplicationContext() , "Email or password cannot be empty", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    TraineeModel model = _service.Login(email, password);
+
+                    if(model != null){
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+
+                    Toast.makeText(getApplicationContext() , "Email or password are incorrect", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

@@ -20,7 +20,7 @@ public class TraineeModel extends Model{
     public int Rank;
 
     public TraineeModel(Trainee trainee) {
-        Objects.requireNonNull(trainee);
+        //Objects.requireNonNull(trainee);
 
         Id = trainee.Id;
         Name = trainee.Name;
