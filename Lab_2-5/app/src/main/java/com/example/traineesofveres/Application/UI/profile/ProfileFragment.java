@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.traineesofveres.DTO.Aplication.TraineeViewModel;
 import com.example.traineesofveres.DTO.Domain.TraineeModel;
@@ -63,15 +64,7 @@ public class ProfileFragment extends Fragment {
 
         FindingViewElements(view);
 
-
-
-        if (_account != null) {
-            _editTextName.setText(_account.Name);
-            _editTextSurname.setText(_account.Surname);
-            _editTextEmail.setText(_account.Email);
-            _editTextAge.setText(Integer.toString(_account.Age));
-            _textViewScore.setText(Integer.toString(_account.Score));
-        }
+        FillProfile();
 
         SetBehaviorSaveButton();
         SetBehaviorExitButton();
@@ -90,8 +83,53 @@ public class ProfileFragment extends Fragment {
         _exitButtom = view.findViewById(R.id.profile_exitButton);
     }
 
-    private void SetBehaviorSaveButton(){
+    private void FillProfile(){
+        if (_account != null) {
+            _editTextName.setText(_account.Name);
+            _editTextSurname.setText(_account.Surname);
+            _editTextEmail.setText(_account.Email);
+            _editTextAge.setText(Integer.toString(_account.Age));
+            _textViewScore.setText(Integer.toString(_account.Score));
+        }
+    }
 
+    private void SetBehaviorSaveButton(){
+        _saveButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // Retrieve updated values from the EditText fields
+                String updatedName = _editTextName.getText().toString().trim();
+                String updatedSurname = _editTextSurname.getText().toString().trim();
+                String updatedEmail = _editTextEmail.getText().toString().trim();
+                String updatedAgeStr = _editTextAge.getText().toString().trim();
+
+                // Validate age input
+                int updatedAge;
+                try {
+                    updatedAge = Integer.parseInt(updatedAgeStr);
+                } catch (NumberFormatException e) {
+                    updatedAge = _account.Age; // Keep the old age if invalid
+                }
+
+                // Update the _account object
+                _account.Name = updatedName;
+                _account.Surname = updatedSurname;
+                _account.Email = updatedEmail;
+                _account.Age = updatedAge;
+
+                // Save the updated account using the service
+
+                try {
+                    _service.UpdateTrainee(_account);
+                }
+                catch (Exception e){
+                    Toast.makeText(getContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Toast.makeText(getContext(), "Profile updated successfully!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void SetBehaviorExitButton(){

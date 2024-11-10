@@ -16,7 +16,7 @@ public interface ITraineeService {
 
     TraineeModel UpdateTrainee(TraineeModel trainee);
 
-    Boolean IsEmailAvailable(String email);
+    Boolean IsEmailAvailable(int id, String email);
 
     Boolean isValidEmail(String email);
 

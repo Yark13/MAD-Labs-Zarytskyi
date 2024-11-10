@@ -69,15 +69,21 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                TraineeModel accountTrainee = _service.Login(email, password);
+                TraineeModel accountTrainee;
 
-                if(accountTrainee == null)
-                    Toast.makeText(getApplicationContext() , "Email or password are incorrect", Toast.LENGTH_SHORT).show();
+                try {
+                    accountTrainee = _service.Login(email, password);
 
+                    if(accountTrainee == null)
+                        Toast.makeText(getApplicationContext() , "Email or password are incorrect", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra(INTENT_PARAM_KEY_TRAINEE_ACCOUNT, accountTrainee.Id);
-                startActivity(intent);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra(INTENT_PARAM_KEY_TRAINEE_ACCOUNT, accountTrainee.Id);
+                    startActivity(intent);
+                }
+                catch (Exception e){
+                    Toast.makeText(getApplicationContext() , e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

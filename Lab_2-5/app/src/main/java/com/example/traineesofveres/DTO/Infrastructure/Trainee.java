@@ -27,6 +27,7 @@ public class Trainee extends Entity {
         Name = traineeModel.Name;
         Surname = traineeModel.Surname;
         Email = traineeModel.Email;
+        Password = traineeModel.Password;
         Age = traineeModel.Age;
         Score = traineeModel.Score;
     }

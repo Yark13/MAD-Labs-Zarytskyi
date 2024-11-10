@@ -1,5 +1,7 @@
 package com.example.traineesofveres.Domain.Services.TraineeService;
 
+import android.nfc.FormatException;
+
 import com.example.traineesofveres.DTO.Domain.QuoteModel;
 import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 import com.example.traineesofveres.Domain.Security.IPasswordManager;
@@ -7,11 +9,14 @@ import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
 import com.example.traineesofveres.Domain.DALInterfaces.IUnitOfWork;
 import com.example.traineesofveres.DTO.Domain.TraineeModel;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import java.util.zip.DataFormatException;
 
 public class TraineeService implements ITraineeService{
     private final IUnitOfWork _unitOfWork;
@@ -78,7 +83,10 @@ public class TraineeService implements ITraineeService{
         Objects.requireNonNull(trainee);
 
         if(!IsTraineeModelCorrectlyFilled(trainee) || trainee.Id == 0)
-            return null;
+            throw new InvalidParameterException("Invalid filled credential");
+
+        if(!IsEmailAvailable(trainee.Id, trainee.Email))
+            throw new IllegalArgumentException("Email is already taken");
 
         TraineeModel result = new TraineeModel(
                                     _repository.Update(
@@ -89,11 +97,11 @@ public class TraineeService implements ITraineeService{
     }
 
     @Override
-    public Boolean IsEmailAvailable(String email) {
+    public Boolean IsEmailAvailable(int id, String email) {
         if(IsNullOrEmpty(email))
             throw new NullPointerException("email cannot be null");
             
-        return _repository.GetAll(trainee -> trainee.Email.equals(email)).get(0) == null;
+        return _repository.GetAll(trainee -> trainee.Email.equals(email) && trainee.Id != id).size() == 0;
     }
 
     @Override
