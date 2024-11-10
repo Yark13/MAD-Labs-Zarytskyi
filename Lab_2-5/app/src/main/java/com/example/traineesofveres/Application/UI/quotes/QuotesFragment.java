@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import com.example.traineesofveres.Application.UI.adapters.QuotesAdapter;
 import com.example.traineesofveres.DTO.Aplication.QuoteViewModel;
 import com.example.traineesofveres.Domain.Services.QuoteService.IQuoteService;
-import com.example.traineesofveres.Domain.Services.TraineeService.ITraineeService;
 import com.example.traineesofveres.R;
 
 import java.util.ArrayList;

@@ -22,11 +22,8 @@
     <string name="profile_email">Email:</string>
     <string name="profile_age">"Age:"</string>
     <string name="profile_score">Score:</string>
-    <string name="test_data_for_profile_surname_and_name">Trainee number 0</string>
-    <string name="test_data_for_profile_email">theBestTrainee@gmail.com</string>
-    <string name="test_data_for_profile_age">22</string>
-    <string name="test_data_for_profile_score">347</string>
-    <string name="save">save</string>
+    <string name="profile_undefined">undefined</string>
+    <string name="save">Save</string>
     <string name="greeting">Welcome to community \"Trainees of our lord and savior Mr. Veres\"!</string>
     <string name="test_data_for_place_in_top">You are on the 34th place in the top!!</string>
 

@@ -49,31 +49,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <EditText
-            android:id="@+id/editTextNewQuoteDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:autofillHints="creditCardExpirationDate"
-            android:ems="10"
-            android:gravity="bottom"
-            android:hint="Date"
-            android:inputType="date"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNewQuote" />
-
         <Button
             android:id="@+id/ButtonAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="Add"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNewQuoteDate" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextNewQuote" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

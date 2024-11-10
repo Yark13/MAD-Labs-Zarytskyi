@@ -46,10 +46,16 @@ public class TraineeService implements ITraineeService{
 
         List<Trainee> trainees = _repository.GetAll(filter);
 
-        return (trainees.size() == 0)? null : new TraineeModel(
-                    _repository
-                        .GetAll(filter)
+        return (trainees.size() == 0)? null : new TraineeModel(trainees
                         .get(0));
+    }
+
+    @Override
+    public TraineeModel Find(int id) {
+        if(id <= 0)
+            throw  new ArrayIndexOutOfBoundsException();
+
+        return new TraineeModel(_repository.Find(id));
     }
 
     @Override

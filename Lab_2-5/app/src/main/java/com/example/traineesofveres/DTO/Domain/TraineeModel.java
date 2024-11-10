@@ -2,9 +2,10 @@ package com.example.traineesofveres.DTO.Domain;
 
 import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class TraineeModel extends Model{
+public class TraineeModel extends Model implements Serializable {
     public String Name;
 
     public String Surname;

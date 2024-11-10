@@ -28,6 +28,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class LoginActivity extends AppCompatActivity {
 
+    public static final String INTENT_PARAM_KEY_TRAINEE_ACCOUNT = "INTENT_PARAM_KEY_TRAINEE_ACCOUNT";
+
     @Inject
     ITraineeService _service;
 
@@ -64,17 +66,18 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(email.isEmpty() || password.isEmpty()){
                     Toast.makeText(getApplicationContext() , "Email or password cannot be empty", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                else {
-                    TraineeModel model = _service.Login(email, password);
 
-                    if(model != null){
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
+                TraineeModel accountTrainee = _service.Login(email, password);
 
+                if(accountTrainee == null)
                     Toast.makeText(getApplicationContext() , "Email or password are incorrect", Toast.LENGTH_SHORT).show();
-                }
+
+
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra(INTENT_PARAM_KEY_TRAINEE_ACCOUNT, accountTrainee.Id);
+                startActivity(intent);
             }
         });
     }

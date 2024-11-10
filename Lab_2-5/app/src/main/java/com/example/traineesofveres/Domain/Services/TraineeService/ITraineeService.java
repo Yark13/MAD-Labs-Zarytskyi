@@ -10,6 +10,8 @@ public interface ITraineeService {
 
     TraineeModel Login(String email, String password);
 
+    TraineeModel Find(int id);
+
     TraineeModel SignUp(TraineeModel trainee);
 
     TraineeModel UpdateTrainee(TraineeModel trainee);

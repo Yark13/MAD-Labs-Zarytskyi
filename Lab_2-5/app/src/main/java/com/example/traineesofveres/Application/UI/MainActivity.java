@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.traineesofveres.Application.UI.login.LoginActivity;
+import com.example.traineesofveres.DTO.Domain.TraineeModel;
 import com.example.traineesofveres.R;
 import com.example.traineesofveres.databinding.ActivityMainBinding;
 import com.example.traineesofveres.Application.UI.profile.ProfileFragment;
@@ -25,16 +27,18 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private final Map<Integer, Fragment> _idFragmentDictionary = new HashMap<Integer, Fragment>();
-
-    public  MainActivity(){
-        FillIdFragmentDictionary();
-    }
+    private int _traineeId;
+    private ProfileFragment _profileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        _traineeId = getIntent().getIntExtra(LoginActivity.INTENT_PARAM_KEY_TRAINEE_ACCOUNT, 0);
+
+        FillIdFragmentDictionary();
 
         ChangeFragment(_idFragmentDictionary.get(R.id.navigation_profile));
 
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void FillIdFragmentDictionary(){
-        _idFragmentDictionary.put(R.id.navigation_profile, new ProfileFragment());
+        _idFragmentDictionary.put(R.id.navigation_profile, ProfileFragment.newInstance(_traineeId));
         _idFragmentDictionary.put(R.id.navigation_taplike, new TapLikeFragment());
         _idFragmentDictionary.put(R.id.navigation_quotes, new QuotesFragment());
         _idFragmentDictionary.put(R.id.navigation_toplist, new TopListFragment());
