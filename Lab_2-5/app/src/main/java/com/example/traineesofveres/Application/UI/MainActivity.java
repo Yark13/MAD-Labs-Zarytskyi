@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private final Map<Integer, Fragment> _idFragmentDictionary = new HashMap<Integer, Fragment>();
     private int _traineeId;
-    private ProfileFragment _profileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void FillIdFragmentDictionary(){
         _idFragmentDictionary.put(R.id.navigation_profile, ProfileFragment.newInstance(_traineeId));
-        _idFragmentDictionary.put(R.id.navigation_taplike, new TapLikeFragment());
+        _idFragmentDictionary.put(R.id.navigation_taplike, TapLikeFragment.newInstance(_traineeId));
         _idFragmentDictionary.put(R.id.navigation_quotes, new QuotesFragment());
         _idFragmentDictionary.put(R.id.navigation_toplist, new TopListFragment());
     }

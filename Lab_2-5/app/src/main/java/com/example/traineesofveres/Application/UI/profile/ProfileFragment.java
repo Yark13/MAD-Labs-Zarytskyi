@@ -94,12 +94,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void SetBehaviorSaveButton(){
-        _saveButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                UpdateProfile();
-            }
-        });
+        _saveButton.setOnClickListener(view -> UpdateProfile());
     }
 
     private void SetBehaviorExitButton(){
