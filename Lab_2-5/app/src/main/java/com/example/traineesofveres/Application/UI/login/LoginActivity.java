@@ -48,13 +48,17 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
+        FindingViewElements();
+
+        SetBehaviorLogInButton();
+        SetBehaviorSignUpButton();
+    }
+
+    private void FindingViewElements(){
         _logInBottom = findViewById(R.id.login_activity_loginButton);
         _signUpButton = findViewById(R.id.login_activity_signUpButton);
         _emailTextBox = findViewById(R.id.login_activity_editTextLoginEmail);
         _password = findViewById(R.id.editTextLoginPassword);
-
-        SetBehaviorLogInButton();
-        SetBehaviorSignUpButton();
     }
 
     private  void  SetBehaviorLogInButton(){

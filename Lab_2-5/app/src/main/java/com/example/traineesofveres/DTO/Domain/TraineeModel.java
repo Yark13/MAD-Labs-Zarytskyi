@@ -20,6 +20,10 @@ public class TraineeModel extends Model implements Serializable {
 
     public int Rank;
 
+    public TraineeModel(){
+
+    }
+
     public TraineeModel(Trainee trainee) {
         //Objects.requireNonNull(trainee);
 

@@ -97,37 +97,7 @@ public class ProfileFragment extends Fragment {
         _saveButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                // Retrieve updated values from the EditText fields
-                String updatedName = _editTextName.getText().toString().trim();
-                String updatedSurname = _editTextSurname.getText().toString().trim();
-                String updatedEmail = _editTextEmail.getText().toString().trim();
-                String updatedAgeStr = _editTextAge.getText().toString().trim();
-
-                // Validate age input
-                int updatedAge;
-                try {
-                    updatedAge = Integer.parseInt(updatedAgeStr);
-                } catch (NumberFormatException e) {
-                    updatedAge = _account.Age; // Keep the old age if invalid
-                }
-
-                // Update the _account object
-                _account.Name = updatedName;
-                _account.Surname = updatedSurname;
-                _account.Email = updatedEmail;
-                _account.Age = updatedAge;
-
-                // Save the updated account using the service
-
-                try {
-                    _service.UpdateTrainee(_account);
-                }
-                catch (Exception e){
-                    Toast.makeText(getContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                Toast.makeText(getContext(), "Profile updated successfully!", Toast.LENGTH_SHORT).show();
+                UpdateProfile();
             }
         });
     }
@@ -143,4 +113,36 @@ public class ProfileFragment extends Fragment {
 
     }
 
+    private void UpdateProfile(){
+
+        try {
+            _service.UpdateTrainee(GetUpdatedTrainee());
+        }
+        catch (Exception e){
+            Toast.makeText(getContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Toast.makeText(getContext(), "Profile updated successfully!", Toast.LENGTH_SHORT).show();
+    }
+
+    private TraineeModel GetUpdatedTrainee(){
+        TraineeModel updatedTrainee = new TraineeModel();
+
+        updatedTrainee.Id = _account.Id;
+        updatedTrainee.Name = _editTextName.getText().toString().trim();
+        updatedTrainee.Surname = _editTextSurname.getText().toString().trim();
+        updatedTrainee.Email = _editTextEmail.getText().toString().trim();
+        updatedTrainee.Password = _account.Password;
+        String updatedAgeStr = _editTextAge.getText().toString().trim();
+        updatedTrainee.Score = _account.Score;
+
+        try {
+            updatedTrainee.Age = Integer.parseInt(updatedAgeStr);
+        } catch (NumberFormatException e) {
+            updatedTrainee.Age = _account.Age;
+        }
+
+        return updatedTrainee;
+    }
 }

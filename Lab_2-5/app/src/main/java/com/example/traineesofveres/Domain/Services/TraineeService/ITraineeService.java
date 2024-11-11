@@ -18,7 +18,5 @@ public interface ITraineeService {
 
     Boolean IsEmailAvailable(int id, String email);
 
-    Boolean isValidEmail(String email);
-
-
+    Boolean IsValidEmail(String email);
 }

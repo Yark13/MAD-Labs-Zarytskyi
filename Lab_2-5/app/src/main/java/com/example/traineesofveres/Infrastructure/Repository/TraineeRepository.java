@@ -107,6 +107,7 @@ public class TraineeRepository extends Repository<Trainee> implements IRepositor
     @Override
     public Trainee Add(Trainee trainee) {
         ContentValues values = getContentValuesFromTrainee(trainee);
+        _database.insert(GetDatabaseTableName(), null, values);
         return trainee;
     }
 

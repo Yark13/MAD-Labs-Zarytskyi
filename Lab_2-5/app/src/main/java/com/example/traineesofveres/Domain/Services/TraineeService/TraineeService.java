@@ -1,8 +1,5 @@
 package com.example.traineesofveres.Domain.Services.TraineeService;
 
-import android.nfc.FormatException;
-
-import com.example.traineesofveres.DTO.Domain.QuoteModel;
 import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 import com.example.traineesofveres.Domain.Security.IPasswordManager;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
@@ -11,12 +8,10 @@ import com.example.traineesofveres.DTO.Domain.TraineeModel;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
-import java.util.zip.DataFormatException;
 
 public class TraineeService implements ITraineeService{
     private final IUnitOfWork _unitOfWork;
@@ -51,7 +46,7 @@ public class TraineeService implements ITraineeService{
 
         List<Trainee> trainees = _repository.GetAll(filter);
 
-        return (trainees.size() == 0)? null : new TraineeModel(trainees
+        return (trainees.isEmpty())? null : new TraineeModel(trainees
                         .get(0));
     }
 
@@ -105,7 +100,7 @@ public class TraineeService implements ITraineeService{
     }
 
     @Override
-    public Boolean isValidEmail(String email) {
+    public Boolean IsValidEmail(String email) {
         if (IsNullOrEmpty(email)) {
             return false;
         }
@@ -119,7 +114,7 @@ public class TraineeService implements ITraineeService{
     private Boolean IsTraineeModelCorrectlyFilled(TraineeModel traineeModel){
 
         return IsAllTraineeFieldsFilled((traineeModel))
-                && isValidEmail(traineeModel.Email)
+                && IsValidEmail(traineeModel.Email)
                 && (traineeModel.Age > 14 && traineeModel.Age < 100);
     }
     
