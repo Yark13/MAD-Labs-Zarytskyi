@@ -11,13 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.traineesofveres.Application.UI.adapters.QuotesAdapter;
 import com.example.traineesofveres.DTO.Aplication.QuoteViewModel;
+import com.example.traineesofveres.DTO.Domain.QuoteModel;
 import com.example.traineesofveres.Domain.Services.QuoteService.IQuoteService;
 import com.example.traineesofveres.R;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -29,10 +33,32 @@ public class QuotesFragment extends Fragment {
     @Inject
     IQuoteService _service;
 
-    private ArrayList<QuoteViewModel> _quotesModels = new ArrayList<QuoteViewModel>();
+    private static final String ARG_TRAINEE_ACCOUNT = "ARG_TRAINEE_ACCOUNT";
+    private static final int PAGE_SIZE = 10;
+    private boolean isLoading = false;
+    private int currentPage = 0;
 
-    public static QuotesFragment newInstance() {
-        return new QuotesFragment();
+    private int _publisherId;
+
+    private Button _addQuoteButton;
+    private EditText _quoteEditText;
+    private RecyclerView _recyclerView;
+    private QuotesAdapter _adapter;
+
+    public static QuotesFragment newInstance(int traineeId) {
+        QuotesFragment fragment = new QuotesFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_TRAINEE_ACCOUNT, traineeId);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            _publisherId = (int) getArguments().getSerializable(ARG_TRAINEE_ACCOUNT);
+        }
     }
 
     @Override
@@ -45,31 +71,63 @@ public class QuotesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerView = view.findViewById(R.id.QuotesRecyclerView);
+        FindingViewElements(view);
 
-        SetUpQuotesModels();
+        AdjustRecyclerView();
 
-        QuotesAdapter adapter = new QuotesAdapter(getContext(), _quotesModels);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LoadQuotes();
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        // TODO: Use the ViewModel
+    private void FindingViewElements(View view){
+        _recyclerView = view.findViewById(R.id.quoteFragment_QuotesRecyclerView);
+        _addQuoteButton = view.findViewById(R.id.quoteFragment_ButtonAdd);
+        _quoteEditText = view.findViewById(R.id.quoteFragment_EditTextNewQuote);
     }
 
-    private void SetUpQuotesModels(){
-        _quotesModels.clear();
-        String[] quotes = getResources().getStringArray(R.array.quotes);
-        String[] dates = getResources().getStringArray(R.array.dates);
+    private void AdjustRecyclerView(){
+        _adapter = new QuotesAdapter(getContext());
+        _recyclerView.setAdapter(_adapter);
+        _recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        for(int i = 0; i < quotes.length; i++){
-            _quotesModels.add(new QuoteViewModel(R.mipmap.icon_foreground, dates[i], quotes[i]));
+        AdjustRecyclerViewScrollListener();
+    }
+
+    private void AdjustRecyclerViewScrollListener(){
+        _recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (dy > 0) { // Check if scrolling down
+                    LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                    if (layoutManager != null) {
+                        int lastVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition();
+                        int totalItemCount = layoutManager.getItemCount();
+
+                        // Check if the last item is fully visible and not already loading
+                        if (lastVisibleItemPosition == totalItemCount - 1 && !isLoading) {
+                            LoadQuotes();
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    private void LoadQuotes(){
+        isLoading = true;
+
+        ArrayList<QuoteModel> newQuotes = _service.GetQuotes(currentPage * PAGE_SIZE, PAGE_SIZE);
+        if (newQuotes != null && !newQuotes.isEmpty()) {
+
+            ArrayList<QuoteViewModel> newViewModels = newQuotes.stream()
+                    .map(q -> new QuoteViewModel(q, R.mipmap.icon_foreground))
+                    .collect(Collectors.toCollection(ArrayList::new));
+            _adapter.addQuotes(newViewModels);
+            currentPage++;
         }
 
+        isLoading = false;
     }
-
 }
+

@@ -4,7 +4,10 @@ import android.media.Image;
 
 import com.example.traineesofveres.DTO.Infrastructure.Entity;
 import com.example.traineesofveres.DTO.Infrastructure.Quote;
+import com.example.traineesofveres.Domain.Services.QuoteService.QuoteService;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -15,7 +18,7 @@ public class QuoteModel extends Model {
 
     public int TraineePublisherId;
 
-    public Date DateOfPublication;
+    public LocalDate  DateOfPublication;
 
     public QuoteModel(Quote quote) {
         Objects.requireNonNull(quote);
@@ -23,6 +26,6 @@ public class QuoteModel extends Model {
         Id = quote.Id;
         Text = quote.Text;
         TraineePublisherId = quote.TraineePublisherId;
-        DateOfPublication = quote.DateOfPublication;
+        DateOfPublication = LocalDate.parse(quote.DateOfPublication, QuoteService.Formatter);
     }
 }

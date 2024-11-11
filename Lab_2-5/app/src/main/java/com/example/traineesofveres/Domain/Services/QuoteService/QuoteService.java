@@ -5,11 +5,14 @@ import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
 import com.example.traineesofveres.Domain.DALInterfaces.IUnitOfWork;
 import com.example.traineesofveres.DTO.Domain.QuoteModel;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class QuoteService implements IQuoteService {
+    public static final DateTimeFormatter Formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
     private final IUnitOfWork _unitOfWork;
     private final IRepository<Quote> _repository;
 
@@ -21,8 +24,12 @@ public class QuoteService implements IQuoteService {
 
     @Override
     public ArrayList<QuoteModel> GetQuotes(int skip, int take) {
-        return _repository.GetAll(skip, take).stream().map(QuoteModel::new)
+        ArrayList<Quote> s = _repository.GetAll(skip, take);
+
+        ArrayList<QuoteModel> quoteModels = s.stream().map(QuoteModel::new)
                 .collect(Collectors.toCollection(ArrayList::new));
+
+        return quoteModels;
     }
 
     @Override

@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/QuotesRecyclerView"
+            android:id="@+id/quoteFragment_QuotesRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
@@ -31,12 +31,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ButtonAdd">
+            app:layout_constraintTop_toBottomOf="@+id/quoteFragment_ButtonAdd">
 
         </androidx.recyclerview.widget.RecyclerView>
 
         <EditText
-            android:id="@+id/editTextNewQuote"
+            android:id="@+id/quoteFragment_EditTextNewQuote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -50,14 +50,14 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <Button
-            android:id="@+id/ButtonAdd"
+            android:id="@+id/quoteFragment_ButtonAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Add"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNewQuote" />
+            app:layout_constraintTop_toBottomOf="@+id/quoteFragment_EditTextNewQuote" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

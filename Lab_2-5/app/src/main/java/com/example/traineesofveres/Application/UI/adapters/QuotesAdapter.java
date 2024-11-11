@@ -19,9 +19,9 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuoteViewH
     Context _context;
     ArrayList<QuoteViewModel> _quotesModels;
 
-    public QuotesAdapter(Context context, ArrayList<QuoteViewModel> quotesModels){
+    public QuotesAdapter(Context context){
         _context = context;
-        _quotesModels = quotesModels;
+        _quotesModels = new ArrayList<>();
     }
 
     @NonNull
@@ -42,6 +42,12 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuoteViewH
     @Override
     public int getItemCount() {
         return _quotesModels.size();
+    }
+
+    public void addQuotes(ArrayList<QuoteViewModel> newQuotes) {
+        int startPos = _quotesModels.size();
+        _quotesModels.addAll(newQuotes);
+        notifyItemRangeInserted(startPos, newQuotes.size());
     }
 
     public  static  class QuoteViewHolder extends  RecyclerView.ViewHolder{

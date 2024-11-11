@@ -10,13 +10,17 @@ public class Quote extends Entity{
 
     public int TraineePublisherId;
 
-    public Date DateOfPublication;
+    public String DateOfPublication;
+
+    public Quote(){
+
+    }
 
     public Quote(QuoteModel quoteModel) {
         Objects.requireNonNull(quoteModel);
 
         Id = quoteModel.Id;
         Text = quoteModel.Text;;
-        DateOfPublication = quoteModel.DateOfPublication;
+        DateOfPublication = quoteModel.DateOfPublication.toString();
     }
 }
