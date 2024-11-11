@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private void FillIdFragmentDictionary(){
         _idFragmentDictionary.put(R.id.navigation_profile, ProfileFragment.newInstance(_traineeId));
         _idFragmentDictionary.put(R.id.navigation_taplike, TapLikeFragment.newInstance(_traineeId));
-        _idFragmentDictionary.put(R.id.navigation_quotes, new QuotesFragment());
+        _idFragmentDictionary.put(R.id.navigation_quotes, QuotesFragment.newInstance(_traineeId));
         _idFragmentDictionary.put(R.id.navigation_toplist, new TopListFragment());
     }
 }

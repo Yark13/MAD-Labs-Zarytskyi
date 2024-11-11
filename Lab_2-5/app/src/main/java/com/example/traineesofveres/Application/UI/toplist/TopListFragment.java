@@ -57,13 +57,6 @@ public class TopListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(TopListViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
     private void SetUpTraineesModels(){
         _traineesModel.clear();
         String[] names = getResources().getStringArray(R.array.names);

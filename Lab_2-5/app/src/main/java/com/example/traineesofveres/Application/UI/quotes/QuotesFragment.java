@@ -13,13 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.traineesofveres.Application.UI.adapters.QuotesAdapter;
 import com.example.traineesofveres.DTO.Aplication.QuoteViewModel;
 import com.example.traineesofveres.DTO.Domain.QuoteModel;
 import com.example.traineesofveres.Domain.Services.QuoteService.IQuoteService;
+import com.example.traineesofveres.Domain.Services.QuoteService.QuoteService;
 import com.example.traineesofveres.R;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -59,6 +62,8 @@ public class QuotesFragment extends Fragment {
         if (getArguments() != null) {
             _publisherId = (int) getArguments().getSerializable(ARG_TRAINEE_ACCOUNT);
         }
+
+        currentPage = 0;
     }
 
     @Override
@@ -73,9 +78,32 @@ public class QuotesFragment extends Fragment {
 
         FindingViewElements(view);
 
+        SetBehaviorAddButton();
+
         AdjustRecyclerView();
 
         LoadQuotes();
+    }
+
+    private void SetBehaviorAddButton(){
+        _addQuoteButton.setOnClickListener(view ->{
+            String newQuoteText = _quoteEditText.getText().toString().trim();
+
+            if(newQuoteText.isEmpty()){
+                Toast.makeText(getContext(), R.string.empty_quote_message, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            QuoteModel newQuote = new QuoteModel(newQuoteText, _publisherId, LocalDate.now());
+
+            try {
+                _service.AddQuote(newQuote);
+                Toast.makeText(getContext(), "New quote added successfully", Toast.LENGTH_SHORT).show();
+            }
+            catch (Exception e){
+                Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void FindingViewElements(View view){
@@ -98,13 +126,12 @@ public class QuotesFragment extends Fragment {
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                if (dy > 0) { // Check if scrolling down
+                if (dy > 0) {
                     LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                     if (layoutManager != null) {
                         int lastVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition();
                         int totalItemCount = layoutManager.getItemCount();
 
-                        // Check if the last item is fully visible and not already loading
                         if (lastVisibleItemPosition == totalItemCount - 1 && !isLoading) {
                             LoadQuotes();
                         }
@@ -116,15 +143,19 @@ public class QuotesFragment extends Fragment {
 
     private void LoadQuotes(){
         isLoading = true;
+        int numberItemsCurrentPage = _adapter.getItemCount()%PAGE_SIZE;
+        int numberItemsToWholePage = PAGE_SIZE - numberItemsCurrentPage;
 
-        ArrayList<QuoteModel> newQuotes = _service.GetQuotes(currentPage * PAGE_SIZE, PAGE_SIZE);
+        ArrayList<QuoteModel> newQuotes = _service.GetQuotes(currentPage * PAGE_SIZE+numberItemsCurrentPage, numberItemsToWholePage);
         if (newQuotes != null && !newQuotes.isEmpty()) {
 
             ArrayList<QuoteViewModel> newViewModels = newQuotes.stream()
                     .map(q -> new QuoteViewModel(q, R.mipmap.icon_foreground))
                     .collect(Collectors.toCollection(ArrayList::new));
             _adapter.addQuotes(newViewModels);
-            currentPage++;
+
+            if(numberItemsToWholePage <= newQuotes.size())
+                currentPage++;
         }
 
         isLoading = false;

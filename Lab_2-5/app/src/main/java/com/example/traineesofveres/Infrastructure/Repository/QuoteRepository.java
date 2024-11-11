@@ -1,11 +1,11 @@
 package com.example.traineesofveres.Infrastructure.Repository;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.traineesofveres.DTO.Domain.TraineeModel;
 import com.example.traineesofveres.DTO.Infrastructure.Quote;
-import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
 
 import java.util.ArrayList;
@@ -67,7 +67,9 @@ public class QuoteRepository extends Repository<Quote> implements IRepository<Qu
 
     @Override
     public Quote Add(Quote entity) {
-        return null;
+        ContentValues values = getContentValuesFromQuote(entity);
+        _database.insert(GetDatabaseTableName(), null, values);
+        return entity;
     }
 
     @Override
@@ -87,5 +89,13 @@ public class QuoteRepository extends Repository<Quote> implements IRepository<Qu
         quote.DateOfPublication = cursor.getString(cursor.getColumnIndexOrThrow("dateOfPublication"));
         quote.TraineePublisherId = cursor.getInt(cursor.getColumnIndexOrThrow("traineePublisherId"));
         return quote;
+    }
+
+    private ContentValues getContentValuesFromQuote(Quote quote) {
+        ContentValues values = new ContentValues();
+        values.put("text", quote.Text);
+        values.put("dateOfPublication", quote.DateOfPublication);
+        values.put("traineePublisherId", quote.TraineePublisherId);
+        return values;
     }
 }

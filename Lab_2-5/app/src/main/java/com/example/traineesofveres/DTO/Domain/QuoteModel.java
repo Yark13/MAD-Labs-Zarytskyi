@@ -12,13 +12,17 @@ import java.util.Date;
 import java.util.Objects;
 
 public class QuoteModel extends Model {
-    public Image Photo;
-
     public String Text;
 
     public int TraineePublisherId;
 
     public LocalDate  DateOfPublication;
+
+    public QuoteModel(String text, int traineePublisherId, LocalDate  dateOfPublication){
+        Text = text;
+        TraineePublisherId = traineePublisherId;
+        DateOfPublication = dateOfPublication;
+    }
 
     public QuoteModel(Quote quote) {
         Objects.requireNonNull(quote);

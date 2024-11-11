@@ -26,6 +26,7 @@
     <string name="save">Save</string>
     <string name="greeting">Welcome to community \"Trainees of our lord and savior Mr. Veres\"!</string>
     <string name="test_data_for_place_in_top">You are on the 34th place in the top!!</string>
+    <string name="empty_quote_message">Field with new quote is empty!</string>
 
     <string-array name="quotes">
         <item>The only limit to our realization of tomorrow is our doubts of today.</item>

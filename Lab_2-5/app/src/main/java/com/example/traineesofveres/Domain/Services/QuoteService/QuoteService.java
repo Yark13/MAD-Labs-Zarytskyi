@@ -5,6 +5,7 @@ import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
 import com.example.traineesofveres.Domain.DALInterfaces.IUnitOfWork;
 import com.example.traineesofveres.DTO.Domain.QuoteModel;
 
+import java.security.InvalidParameterException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -24,9 +25,8 @@ public class QuoteService implements IQuoteService {
 
     @Override
     public ArrayList<QuoteModel> GetQuotes(int skip, int take) {
-        ArrayList<Quote> s = _repository.GetAll(skip, take);
-
-        ArrayList<QuoteModel> quoteModels = s.stream().map(QuoteModel::new)
+        ArrayList<QuoteModel> quoteModels = _repository.GetAll(skip, take)
+                .stream().map(QuoteModel::new)
                 .collect(Collectors.toCollection(ArrayList::new));
 
         return quoteModels;
@@ -34,11 +34,25 @@ public class QuoteService implements IQuoteService {
 
     @Override
     public QuoteModel AddQuote(QuoteModel quote) {
+        ValidateQuote(quote);
+
         QuoteModel result = new QuoteModel(
                                 _repository.Add(
                                     new Quote(quote)));
         _unitOfWork.SaveChanges();
 
         return result;
+    }
+
+    private void ValidateQuote(QuoteModel quote){
+        Objects.requireNonNull(quote);
+
+        String validateMessage = "";
+
+        if (quote.Text.isEmpty()) validateMessage += "Quote are empty!\n";
+        if(quote.TraineePublisherId <=0) validateMessage += "Cannot determinate who is publisher!\n";
+        if(quote.DateOfPublication == null) validateMessage += "Cannot determinate date of quote!\n";
+
+        if(!validateMessage.isEmpty()) throw new InvalidParameterException(validateMessage);
     }
 }
