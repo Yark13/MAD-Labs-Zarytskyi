@@ -3,6 +3,8 @@ package com.example.traineesofveres.DTO.Aplication;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
+import com.example.traineesofveres.DTO.Domain.TraineeModel;
+
 public class TraineeViewModel extends ViewModel {
     public int Id;
 
@@ -10,9 +12,15 @@ public class TraineeViewModel extends ViewModel {
 
     public String Surname;
 
+    public String Email;
+
+    public String Password;
+
     public int Age;
 
     public  int Score;
+
+    public int Rank;
 
     public TraineeViewModel(int id, String name, String surname, int age, int score, @NonNull AutoCloseable... closeables) {
         super(closeables);
@@ -21,6 +29,17 @@ public class TraineeViewModel extends ViewModel {
         Surname = surname;
         Age = age;
         Score = score;
+    }
+
+    public TraineeViewModel(TraineeModel traineeModel){
+        Id = traineeModel.Id;
+        Name = traineeModel.Name;
+        Surname = traineeModel.Surname;
+        Email = traineeModel.Email;
+        Password = traineeModel.Password;
+        Age = traineeModel.Age;
+        Score = traineeModel.Score;
+        Rank = traineeModel.Rank;
     }
 
     public String getName() {

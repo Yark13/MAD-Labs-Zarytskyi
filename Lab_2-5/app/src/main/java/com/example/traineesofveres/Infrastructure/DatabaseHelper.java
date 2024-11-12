@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 
 import com.example.traineesofveres.DTO.Infrastructure.Quote;
 import com.example.traineesofveres.DTO.Infrastructure.Trainee;
+import com.example.traineesofveres.Domain.Security.IPasswordManager;
+import com.example.traineesofveres.Domain.Security.PasswordManager;
 import com.example.traineesofveres.Infrastructure.Repository.QuoteRepository;
 import com.example.traineesofveres.Infrastructure.Repository.TraineeRepository;
 
@@ -16,6 +18,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper _instance;
     private static final String Database_Name = "TraineeOfVeres.db";
     private static final int Database_Version = 1;
+
+    private final IPasswordManager _passwordManager;
 
     public static synchronized DatabaseHelper getInstance(Context context){
         if(_instance == null){
@@ -27,6 +31,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private DatabaseHelper(@Nullable Context context) {
         super(context, Database_Name, null, Database_Version);
+
+        _passwordManager = new PasswordManager();
     }
 
     @Override
@@ -50,11 +56,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private void insertTestData(SQLiteDatabase db) {
         String[] traineeInserts = new String[]{
-                "INSERT INTO trainees (name, surname, email, password, age, score) VALUES ('John', 'Doe', 'john.doe@example.com', 'password123', 25, 85);",
-                "INSERT INTO trainees (name, surname, email, password, age, score) VALUES ('Jane', 'Smith', 'jane.smith@example.com', 'password456', 22, 92);",
-                "INSERT INTO trainees (name, surname, email, password, age, score) VALUES ('Alice', 'Johnson', 'alice.j@example.com', 'password789', 30, 78);",
-                "INSERT INTO trainees (name, surname, email, password, age, score) VALUES ('Bob', 'Brown', 'bob.brown@example.com', 'password321', 28, 88);",
-                "INSERT INTO trainees (name, surname, email, password, age, score) VALUES ('Charlie', 'Davis', 'charlie.d@example.com', 'password654', 23, 95);"
+                "INSERT INTO trainees (name, surname, email, password, age, score) VALUES ('John', 'Doe', 'john.doe@example.com', '" + _passwordManager.HashPassword("password123") + "', 25, 85);",
+                "INSERT INTO trainees (name, surname, email, password, age, score) VALUES ('Jane', 'Smith', 'jane.smith@example.com', '" + _passwordManager.HashPassword("password456") + "', 22, 92);",
+                "INSERT INTO trainees (name, surname, email, password, age, score) VALUES ('Alice', 'Johnson', 'alice.j@example.com', '" + _passwordManager.HashPassword("password789") + "', 30, 78);",
+                "INSERT INTO trainees (name, surname, email, password, age, score) VALUES ('Bob', 'Brown', 'bob.brown@example.com', '" + _passwordManager.HashPassword("password321") + "', 28, 88);",
+                "INSERT INTO trainees (name, surname, email, password, age, score) VALUES ('Charlie', 'Davis', 'charlie.d@example.com', '" + _passwordManager.HashPassword("password654") + "', 23, 95);"
         };
 
         String[] quotesInserts = new String[]{

@@ -15,14 +15,25 @@ import com.example.traineesofveres.DTO.Aplication.TraineeViewModel;
 import com.example.traineesofveres.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TraineesAdapter extends RecyclerView.Adapter<TraineesAdapter.TraineeViewHolder>{
     Context _context;
     ArrayList<TraineeViewModel> _traineeViewModels;
 
-    public TraineesAdapter(Context _context, ArrayList<TraineeViewModel> _traineeViewModels) {
-        this._context = _context;
-        this._traineeViewModels = _traineeViewModels;
+    public TraineesAdapter(Context context) {
+        Objects.requireNonNull(context);
+        _context = context;
+    }
+
+    public TraineesAdapter(Context _context, ArrayList<TraineeViewModel> traineeViewModels) {
+        this(_context);
+        SetItems(traineeViewModels);
+    }
+
+    public void SetItems(ArrayList<TraineeViewModel> traineeViewModels){
+        Objects.requireNonNull(traineeViewModels);
+        _traineeViewModels = traineeViewModels;
     }
 
     @NonNull

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class TraineeService implements ITraineeService{
     private final IUnitOfWork _unitOfWork;
@@ -31,7 +32,9 @@ public class TraineeService implements ITraineeService{
         if(topCount < 1 || traineeId < 1)
             throw  new NullPointerException("top count and trainee id cannot be less 1");
 
-        return _repository.GetTopWithRank(topCount, traineeId);
+        return _repository.GetTopWithRank(topCount, traineeId).stream()
+                .map(p -> new TraineeModel(p.getFirst(), p.getSecond()))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override

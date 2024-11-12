@@ -25,8 +25,6 @@ public class TraineeModel extends Model implements Serializable {
     }
 
     public TraineeModel(Trainee trainee) {
-        //Objects.requireNonNull(trainee);
-
         Id = trainee.Id;
         Name = trainee.Name;
         Surname = trainee.Surname;
@@ -34,5 +32,10 @@ public class TraineeModel extends Model implements Serializable {
         Password = trainee.Password;
         Age = trainee.Age;
         Score = trainee.Score;
+    }
+
+    public TraineeModel(Trainee trainee, int rank){
+        this(trainee);
+        Rank = rank;
     }
 }

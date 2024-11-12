@@ -5,12 +5,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.traineesofveres.DTO.Domain.TraineeModel;
-import com.example.traineesofveres.DTO.Infrastructure.Entity;
 import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
 
 import java.util.ArrayList;
 import java.util.function.Predicate;
+
+import kotlin.Pair;
 
 public class TraineeRepository extends Repository<Trainee> implements IRepository<Trainee> {
 
@@ -81,16 +82,48 @@ public class TraineeRepository extends Repository<Trainee> implements IRepositor
     }
 
     @Override
-    public ArrayList<TraineeModel> GetTopWithRank(int topCount, int traineeId) {
-        ArrayList<TraineeModel> topTrainees = new ArrayList<>();
-        String query = "SELECT * FROM " + GetDatabaseTableName() + " ORDER BY score DESC LIMIT ?";
-        Cursor cursor = _database.rawQuery(query, new String[]{String.valueOf(topCount)});
-        while (cursor.moveToNext()) {
-            topTrainees.add(buildTraineeModelFromCursor(cursor));
+    public ArrayList<Pair<Trainee, Integer>> GetTopWithRank(int topCount, int traineeId) {
+        ArrayList<Pair<Trainee, Integer>> resultList = new ArrayList<>();
+
+        String queryGetTop = "SELECT id, name, surname, email, age, score, " +
+                "(SELECT COUNT(*) + 1 FROM " + GetDatabaseTableName() + " WHERE score > t.score) AS rank " +
+                "FROM " + GetDatabaseTableName() + " t " +
+                "ORDER BY score DESC " +
+                "LIMIT ?;";
+
+        String queryGetRankTraineeWithId = "SELECT id, name, surname, email, age, score, " +
+                "(SELECT COUNT(*) + 1 FROM " + GetDatabaseTableName() + " WHERE score > (SELECT score FROM " + GetDatabaseTableName() + " WHERE id = ?)) AS rank " +
+                "FROM " + GetDatabaseTableName() + " WHERE id = ?;";
+
+        Cursor cursor = null;
+        Cursor cursor1 = null;
+
+        try {
+            cursor = _database.rawQuery(queryGetTop, new String[]{String.valueOf(topCount)});
+
+            if (cursor.moveToFirst()) {
+                do {
+                    resultList.add(buildPairTraineeIntegerFromCursor(cursor));
+                } while (cursor.moveToNext());
+            }
+
+            cursor1 = _database.rawQuery(queryGetRankTraineeWithId, new String[]{String.valueOf(traineeId), String.valueOf(traineeId)});
+            cursor1.moveToFirst();
+            
+            resultList.add(buildPairTraineeIntegerFromCursor(cursor1));
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+
+            if (cursor1 != null) {
+                cursor1.close();
+            }
         }
-        cursor.close();
-        return topTrainees;
+
+        return resultList;
     }
+
 
     @Override
     public Trainee Find(int id) {
@@ -135,10 +168,16 @@ public class TraineeRepository extends Repository<Trainee> implements IRepositor
         return trainee;
     }
 
-    private TraineeModel buildTraineeModelFromCursor(Cursor cursor) {
-        //TraineeModel model = new TraineeModel();
-        // Populate model fields similarly as in buildTraineeFromCursor()
-        return null;
+    private Pair<Trainee, Integer> buildPairTraineeIntegerFromCursor(Cursor cursor) {
+        Trainee trainee = new Trainee();
+        trainee.Id = cursor.getInt(0);
+        trainee.Name = cursor.getString(1);
+        trainee.Surname = cursor.getString(2);
+        trainee.Email = cursor.getString(3);
+        trainee.Age = cursor.getInt(4);
+        trainee.Score = cursor.getInt(5);
+        int rank = cursor.getInt(6);
+        return new Pair<>(trainee, rank);
     }
 
     private ContentValues getContentValuesFromTrainee(Trainee trainee) {

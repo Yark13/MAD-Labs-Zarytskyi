@@ -11,6 +11,8 @@ import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
+import kotlin.Pair;
+
 public class QuoteRepository extends Repository<Quote> implements IRepository<Quote> {
 
     public static String GetDatabaseTableName() {
@@ -56,7 +58,7 @@ public class QuoteRepository extends Repository<Quote> implements IRepository<Qu
     }
 
     @Override
-    public ArrayList<TraineeModel> GetTopWithRank(int topCount, int traineeId) {
+    public ArrayList<Pair<Quote, Integer>> GetTopWithRank(int topCount, int traineeId) {
         return null;
     }
 

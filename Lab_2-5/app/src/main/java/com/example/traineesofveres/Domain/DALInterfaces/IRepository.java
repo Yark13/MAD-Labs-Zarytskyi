@@ -6,6 +6,8 @@ import com.example.traineesofveres.DTO.Infrastructure.Entity;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
+import kotlin.Pair;
+
 public interface IRepository<T extends Entity> {
     ArrayList<T> GetAll();
 
@@ -15,7 +17,7 @@ public interface IRepository<T extends Entity> {
 
     ArrayList<T> GetAll(Predicate<T> filter, int skip, int take);
 
-    ArrayList<TraineeModel> GetTopWithRank(int topCount, int traineeId);
+    ArrayList<Pair<T, Integer>> GetTopWithRank(int topCount, int traineeId);
 
     T Find(int id);
 
