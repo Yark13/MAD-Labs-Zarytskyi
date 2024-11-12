@@ -59,22 +59,7 @@ public class TraineesAdapter extends RecyclerView.Adapter<TraineesAdapter.Traine
         return _traineeViewModels.size();
     }
 
-    public  static  class TraineeViewHolder extends  RecyclerView.ViewHolder{
-        TextView topPlace, name, surname, age, score;
-        CardView holder;
-
-        public TraineeViewHolder(@NonNull View itemView) {
-            super(itemView);
-            topPlace = itemView.findViewById(R.id.traineesRecyclerViewRow_textView_topPlace);
-            name = itemView.findViewById(R.id.traineesRecyclerViewRow_textView_name);
-            surname = itemView.findViewById(R.id.traineesRecyclerViewRow_textView_surname);
-            age = itemView.findViewById(R.id.traineesRecyclerViewRow_textView_age);
-            score = itemView.findViewById(R.id.traineesRecyclerViewRow_textView_score);
-            holder = itemView.findViewById(R.id.trainees_CardView);
-        }
-    }
-
-    private int GetColor(int Position){
+    public int GetColor(int Position){
         int color = ContextCompat.getColor(_context, R.color.white);
         switch (Position){
             case 0:
@@ -94,6 +79,21 @@ public class TraineesAdapter extends RecyclerView.Adapter<TraineesAdapter.Traine
         }
 
         return color;
+    }
+
+    public  static  class TraineeViewHolder extends  RecyclerView.ViewHolder{
+        TextView topPlace, name, surname, age, score;
+        CardView holder;
+
+        public TraineeViewHolder(@NonNull View itemView) {
+            super(itemView);
+            topPlace = itemView.findViewById(R.id.traineesRecyclerViewRow_textView_topPlace);
+            name = itemView.findViewById(R.id.traineesRecyclerViewRow_textView_name);
+            surname = itemView.findViewById(R.id.traineesRecyclerViewRow_textView_surname);
+            age = itemView.findViewById(R.id.traineesRecyclerViewRow_textView_age);
+            score = itemView.findViewById(R.id.traineesRecyclerViewRow_textView_score);
+            holder = itemView.findViewById(R.id.trainees_CardView);
+        }
     }
 }
 

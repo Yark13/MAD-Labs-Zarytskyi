@@ -1,5 +1,6 @@
 package com.example.traineesofveres.Application.UI.toplist;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -36,13 +37,14 @@ public class TopListFragment extends Fragment {
     private static final String ARG_TRAINEE_ACCOUNT = "ARG_TRAINEE_ACCOUNT";
     private static final int COUNT_OF_TOP_TRAINEE = 10;
 
-    private ArrayList<TraineeViewModel> _traineesModel = new ArrayList<TraineeViewModel>();
+    private ArrayList<TraineeViewModel> _traineesModel = new ArrayList<>();
 
     private RecyclerView _recyclerView;
     private TextView _viewerUserPosition;
 
+    private TraineesAdapter _adapter;
+
     private TraineeModel _trainee;
-    private TopListViewModel mViewModel;
 
     public static TopListFragment newInstance(int traineeId) {
         TopListFragment fragment = new TopListFragment();
@@ -75,6 +77,8 @@ public class TopListFragment extends Fragment {
 
         FindingViewElements(view);
 
+        SetUpRecyclerView();
+
         CreateTop();
     }
 
@@ -83,18 +87,19 @@ public class TopListFragment extends Fragment {
         _viewerUserPosition = view.findViewById(R.id.topList_viewerUserPosition);
     }
 
+    private void SetUpRecyclerView(){
+        _adapter = new TraineesAdapter(getContext());
+        _recyclerView.setAdapter(_adapter);
+        _recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
     private void CreateTop(){
 
         SetUpTraineesModels();
 
+        _adapter.SetItems(new ArrayList<>(_traineesModel.subList(0, _traineesModel.size()-1)));
 
-        TraineesAdapter adapter = new TraineesAdapter(getContext(), new ArrayList<>(_traineesModel.subList(0, _traineesModel.size()-1)));
-        _recyclerView.setAdapter(adapter);
-        _recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    }
-
-    private void SetUpRecyclerView(){
-
+        ViewUserPosition();
     }
 
     private void SetUpTraineesModels(){
@@ -110,5 +115,13 @@ public class TopListFragment extends Fragment {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void ViewUserPosition(){
+        int rank = _traineesModel.get(_traineesModel.size()-1).Rank;
+
+        _viewerUserPosition.setText("You are on the "+ rank +"th place in the top!!");
+        _viewerUserPosition.setBackgroundColor(_adapter.GetColor(rank-1));
     }
 }
