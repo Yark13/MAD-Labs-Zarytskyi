@@ -68,6 +68,8 @@ public class TraineeService implements ITraineeService{
         if(!IsTraineeModelCorrectlyFilled(trainee) || trainee.Id != 0)
             return null;
 
+        trainee.Password = _passwordManager.HashPassword(trainee.Password);
+
         TraineeModel result = new TraineeModel(
                                     _repository.Add(
                                             new Trainee(trainee)));
