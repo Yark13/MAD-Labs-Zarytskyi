@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="softblue">#0a6abf</color>
+    <color name="tanAccent">#e3cdb3</color>
+    <color name="gold">#DBB000</color>
+    <color name="silver">#9CAABD</color>
+    <color name="copper">#BB6622</color>
+    <color name="top5Color">#C6E6D4</color>
+    <color name="recyclerViewBackground">#bac280</color>
+</resources>
