@@ -52,4 +52,5 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(libs.hilt.android)
     annotationProcessor(libs.hilt.compiler)
+    implementation(libs.konfetti)
 }
