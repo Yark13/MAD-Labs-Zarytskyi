@@ -1,6 +1,5 @@
 package com.example.traineesofveres.Application.UI.signup;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -66,28 +66,30 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private  void  SetBehaviorSignUpButton(){
-        _signUpButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                try {
-                    TraineeModel newAccount = GetNewAccountFromView();
+        _signUpButton.setOnClickListener(view -> {
+            try {
+                TraineeModel newAccount = GetNewAccountFromView();
 
-                    ValidateModel(newAccount);
+                ValidateModel(newAccount);
 
-                    if(!SignUp(newAccount)){
-                        Toast.makeText(getApplicationContext(), "Something wrong", Toast.LENGTH_SHORT).show();
+                if(!SignUp(newAccount)) throw new Exception("Something wrong");
 
-                        return;
-                    }
-
-                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                    startActivity(intent);
-
-                    Toast.makeText(getApplicationContext(), "Signed up successfully!", Toast.LENGTH_SHORT).show();
-                }
-                catch (Exception e){
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-                }
+                new AlertDialog.Builder(SignUpActivity.this)
+                        .setTitle("Success!!")
+                        .setMessage("Welcome to our little family, new trainee\uD83D\uDC49\uD83D\uDC48\uD83E\uDD17")
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        })
+                        .show();
+            }
+            catch (Exception e){
+                new AlertDialog.Builder(SignUpActivity.this)
+                        .setTitle("Error")
+                        .setMessage(e.getMessage())
+                        .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                        .show();
             }
         });
     }

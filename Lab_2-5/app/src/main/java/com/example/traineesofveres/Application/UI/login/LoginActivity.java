@@ -1,5 +1,6 @@
 package com.example.traineesofveres.Application.UI.login;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -78,36 +80,38 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private  void  SetBehaviorLogInButton(){
-        _logInBottom.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                String email = _emailTextBox.getText().toString();
-                String password = _password.getText().toString();
+        _logInBottom.setOnClickListener(view -> {
+            String email = _emailTextBox.getText().toString();
+            String password = _password.getText().toString();
 
-                if(email.isEmpty() || password.isEmpty()){
-                    Toast.makeText(getApplicationContext() , "Email or password cannot be empty", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            try {
+
+                if(email.isEmpty() || password.isEmpty()) throw new Exception("Email or password cannot be empty");
 
                 TraineeModel accountTrainee;
+                accountTrainee = _service.Login(email, password);
 
-                try {
-                    accountTrainee = _service.Login(email, password);
+                if(accountTrainee == null) throw new Exception("Email or password are incorrect");
 
-                    if(accountTrainee == null){
-                        Toast.makeText(getApplicationContext() , "Email or password are incorrect", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                SaveUserData(accountTrainee.Id);
 
-                    SaveUserData(accountTrainee.Id);
-
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra(INTENT_PARAM_KEY_TRAINEE_ACCOUNT, accountTrainee.Id);
-                    startActivity(intent);
-                }
-                catch (Exception e){
-                    Toast.makeText(getApplicationContext() , e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+                new AlertDialog.Builder(this)
+                        .setTitle("Welcome back my little trainee")
+                        .setMessage("I have been waiting for you for so long, " + accountTrainee.Name + " " + accountTrainee.Surname)
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra(INTENT_PARAM_KEY_TRAINEE_ACCOUNT, accountTrainee.Id);
+                            startActivity(intent);
+                            finish();
+                        })
+                        .show();
+            }
+            catch (Exception e){
+                new AlertDialog.Builder(this)
+                        .setTitle("Error")
+                        .setMessage(e.getMessage())
+                        .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                        .show();
             }
         });
     }
