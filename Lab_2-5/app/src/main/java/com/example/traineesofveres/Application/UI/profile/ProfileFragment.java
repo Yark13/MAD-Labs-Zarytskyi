@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -101,8 +102,15 @@ public class ProfileFragment extends Fragment {
         _exitButtom.setOnClickListener(view -> {
             CleanUserPreferences();
 
-            Intent intent = new Intent(getContext(), LoginActivity.class);
-            startActivity(intent);
+            new AlertDialog.Builder(getContext())
+                    .setTitle("\uD83D\uDE2D\uD83D\uDE2D\uD83D\uDE2D")
+                    .setMessage("Are you really wanting leave Mr. Veres\uD83E\uDD79?")
+                    .setPositiveButton("Yes\uD83E\uDD72", (dialog, which) -> {
+                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intent);
+                    })
+                    .setNegativeButton("No\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDC68\u200D\uD83D\uDCBB\uD83D\uDC69\u200D\uD83D\uDCBB\uD83E\uDD73", (dialog, which) -> dialog.dismiss())
+                    .show();
         });
 
     }
