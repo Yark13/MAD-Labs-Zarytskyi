@@ -6,8 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.traineesofveres.DTO.Infrastructure.Quote;
-import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 import com.example.traineesofveres.Domain.Security.IPasswordManager;
 import com.example.traineesofveres.Domain.Security.PasswordManager;
 import com.example.traineesofveres.Infrastructure.Repository.QuoteRepository;

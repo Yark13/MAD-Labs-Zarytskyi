@@ -1,8 +1,8 @@
 package com.example.traineesofveres.Application.UI.profile;
 
-import androidx.lifecycle.ViewModelProvider;
-
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traineesofveres.DTO.Aplication.TraineeViewModel;
+import com.example.traineesofveres.Application.UI.MainActivity;
 import com.example.traineesofveres.DTO.Domain.TraineeModel;
 import com.example.traineesofveres.Domain.Services.TraineeService.ITraineeService;
 import com.example.traineesofveres.R;
@@ -98,12 +98,11 @@ public class ProfileFragment extends Fragment {
     }
 
     private void SetBehaviorExitButton(){
-        _exitButtom.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), LoginActivity.class);
-                startActivity(intent);
-            }
+        _exitButtom.setOnClickListener(view -> {
+            CleanUserPreferences();
+
+            Intent intent = new Intent(getContext(), LoginActivity.class);
+            startActivity(intent);
         });
 
     }
@@ -114,7 +113,7 @@ public class ProfileFragment extends Fragment {
             _service.UpdateTrainee(GetUpdatedTrainee());
         }
         catch (Exception e){
-            Toast.makeText(getContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -139,5 +138,12 @@ public class ProfileFragment extends Fragment {
         }
 
         return updatedTrainee;
+    }
+
+    private  void CleanUserPreferences(){
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(MainActivity.UserPrefs, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
     }
 }

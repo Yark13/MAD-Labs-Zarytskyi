@@ -2,6 +2,7 @@ package com.example.traineesofveres.Application.UI.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -48,10 +49,25 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
+        if(AutoLogin()) return;
+
         FindingViewElements();
 
         SetBehaviorLogInButton();
         SetBehaviorSignUpButton();
+    }
+
+    private Boolean AutoLogin(){
+        if (isUserLoggedIn()) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra(INTENT_PARAM_KEY_TRAINEE_ACCOUNT, getUserId());
+            startActivity(intent);
+            finish();
+
+            return true;
+        }
+
+        return false;
     }
 
     private void FindingViewElements(){
@@ -78,8 +94,12 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     accountTrainee = _service.Login(email, password);
 
-                    if(accountTrainee == null)
+                    if(accountTrainee == null){
                         Toast.makeText(getApplicationContext() , "Email or password are incorrect", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    SaveUserData(accountTrainee.Id);
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra(INTENT_PARAM_KEY_TRAINEE_ACCOUNT, accountTrainee.Id);
@@ -100,5 +120,21 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private boolean isUserLoggedIn() {
+        return getUserId() != -1;
+    }
+
+    private int getUserId() {
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.UserPrefs, Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(MainActivity.UserIdPref, -1);
+    }
+
+    private void SaveUserData(int userId) {
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.UserPrefs, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(MainActivity.UserIdPref, userId);
+        editor.apply();
     }
 }

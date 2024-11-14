@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.traineesofveres.Application.UI.login.LoginActivity;
-import com.example.traineesofveres.DTO.Domain.TraineeModel;
 import com.example.traineesofveres.R;
 import com.example.traineesofveres.databinding.ActivityMainBinding;
 import com.example.traineesofveres.Application.UI.profile.ProfileFragment;
@@ -24,6 +23,9 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
+
+    public static final String UserPrefs = "UserPrefs";
+    public static final String UserIdPref = "UserId";
 
     private ActivityMainBinding binding;
     private final Map<Integer, Fragment> _idFragmentDictionary = new HashMap<Integer, Fragment>();
