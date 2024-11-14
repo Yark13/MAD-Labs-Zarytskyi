@@ -15,8 +15,6 @@ public interface IRepository<T extends Entity> {
 
     ArrayList<T> GetAll(int skip, int take);
 
-    ArrayList<T> GetAll(Predicate<T> filter, int skip, int take);
-
     ArrayList<Pair<T, Integer>> GetTopWithRank(int topCount, int traineeId);
 
     T Find(int id);
@@ -24,6 +22,4 @@ public interface IRepository<T extends Entity> {
     T Add(T entity);
 
     T Update(T entity);
-
-    void Delete(int id);
 }
