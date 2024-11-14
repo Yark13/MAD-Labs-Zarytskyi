@@ -1,5 +1,6 @@
 package com.example.traineesofveres.Application.DI.HiltModules.Domain.Services;
 
+import com.example.traineesofveres.Domain.Connection.ConnectionManager.IConnectionManager;
 import com.example.traineesofveres.Domain.DALInterfaces.IUnitOfWork;
 import com.example.traineesofveres.Domain.Security.IPasswordManager;
 import com.example.traineesofveres.Domain.Services.TraineeService.ITraineeService;
@@ -18,7 +19,7 @@ public class ITraineeServiceModule {
 
     @Provides
     @Singleton
-    public static ITraineeService provideService(IUnitOfWork unitOfWork, IPasswordManager passwordManager){
-        return new TraineeService(unitOfWork, passwordManager);
+    public static ITraineeService provideService(IUnitOfWork unitOfWork, IPasswordManager passwordManager, IConnectionManager connectionManager){
+        return new TraineeService(unitOfWork, passwordManager, connectionManager);
     }
 }

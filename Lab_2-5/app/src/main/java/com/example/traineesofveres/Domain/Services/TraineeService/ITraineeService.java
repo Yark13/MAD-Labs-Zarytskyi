@@ -1,6 +1,7 @@
 package com.example.traineesofveres.Domain.Services.TraineeService;
 
 import com.example.traineesofveres.DTO.Domain.TraineeModel;
+import com.example.traineesofveres.Domain.Connection.ConnectionManager.IConnectionManager;
 
 import java.util.ArrayList;
 

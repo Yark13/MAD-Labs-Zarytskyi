@@ -1,6 +1,7 @@
 package com.example.traineesofveres.Domain.Services.TraineeService;
 
 import com.example.traineesofveres.DTO.Infrastructure.Trainee;
+import com.example.traineesofveres.Domain.Connection.ConnectionManager.IConnectionManager;
 import com.example.traineesofveres.Domain.Security.IPasswordManager;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
 import com.example.traineesofveres.Domain.DALInterfaces.IUnitOfWork;
@@ -18,10 +19,12 @@ public class TraineeService implements ITraineeService{
     private final IUnitOfWork _unitOfWork;
     private final IRepository<Trainee> _repository;
     private final IPasswordManager _passwordManager;
+    private final IConnectionManager _connectionManager;
 
-    public TraineeService(IUnitOfWork unitOfWork, IPasswordManager passwordManager) {
+    public TraineeService(IUnitOfWork unitOfWork, IPasswordManager passwordManager, IConnectionManager connectionManager) {
         _unitOfWork = Objects.requireNonNull(unitOfWork);
         _passwordManager = Objects.requireNonNull(passwordManager);
+        _connectionManager = connectionManager;
 
         _repository = _unitOfWork.GetRepository(Trainee.class);
     }
