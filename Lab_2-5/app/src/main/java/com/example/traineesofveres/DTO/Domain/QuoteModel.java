@@ -12,11 +12,15 @@ import java.util.Date;
 import java.util.Objects;
 
 public class QuoteModel extends Model {
-    public String Text;
+    public String Text = "-";
 
     public int TraineePublisherId;
 
-    public LocalDate  DateOfPublication;
+    public LocalDate  DateOfPublication = LocalDate.MIN;
+
+    public QuoteModel(){
+
+    }
 
     public QuoteModel(String text, int traineePublisherId, LocalDate  dateOfPublication){
         Text = text;

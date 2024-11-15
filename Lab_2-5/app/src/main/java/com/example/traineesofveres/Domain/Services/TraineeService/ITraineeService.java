@@ -1,11 +1,13 @@
 package com.example.traineesofveres.Domain.Services.TraineeService;
 
 import com.example.traineesofveres.DTO.Domain.TraineeModel;
-import com.example.traineesofveres.Domain.Connection.ConnectionManager.IConnectionManager;
 
 import java.util.ArrayList;
 
 public interface ITraineeService {
+
+    boolean IsConnection();
+
     /** Return trainee list with size topCount+1 where last element are trainee with traineeId**/
     ArrayList<TraineeModel> GetTop(int topCount, int traineeId);
 

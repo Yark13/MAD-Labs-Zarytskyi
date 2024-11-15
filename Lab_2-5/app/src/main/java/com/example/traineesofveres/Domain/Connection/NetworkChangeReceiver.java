@@ -18,7 +18,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        boolean isConnected = _connectionManager.isInternetAvailable(context);
+        boolean isConnected = _connectionManager.isInternetAvailable();
 
         if (!isConnected) {
             ShowNoInternetDialog(context);

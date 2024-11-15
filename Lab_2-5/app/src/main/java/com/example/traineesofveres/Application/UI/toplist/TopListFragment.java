@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.PluralsRes;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -106,6 +108,8 @@ public class TopListFragment extends Fragment {
         _traineesModel.clear();
 
         try {
+            CheckUserConnection();
+
             _traineesModel = _service.GetTop(COUNT_OF_TOP_TRAINEE, _trainee.Id).stream()
                     .map(TraineeViewModel::new)
                     .collect(Collectors.toCollection(ArrayList::new));
@@ -123,5 +127,15 @@ public class TopListFragment extends Fragment {
 
         _viewerUserPosition.setText("You are on the "+ rank +"th place in the top!!");
         _viewerUserPosition.setBackgroundColor(_adapter.GetColor(rank-1));
+    }
+
+    private void CheckUserConnection(){
+        if(!_service.IsConnection()){
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Exception access to Database")
+                    .setMessage("Cannot use database, no connection!")
+                    .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                    .show();
+        }
     }
 }

@@ -4,15 +4,16 @@ import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 public class TraineeModel extends Model implements Serializable {
-    public String Name;
+    private String _defaultValue = "-";
 
-    public String Surname;
+    public String Name = _defaultValue;
 
-    public String Email;
+    public String Surname = _defaultValue;
 
-    public String Password;
+    public String Email = _defaultValue;
+
+    public String Password = _defaultValue;
 
     public int Age;
 

@@ -5,6 +5,9 @@ import com.example.traineesofveres.DTO.Domain.QuoteModel;
 import java.util.ArrayList;
 
 public interface IQuoteService {
+
+    boolean IsConnection();
+
     ArrayList<QuoteModel> GetQuotes(int skip, int take);
 
     QuoteModel AddQuote(QuoteModel quote);

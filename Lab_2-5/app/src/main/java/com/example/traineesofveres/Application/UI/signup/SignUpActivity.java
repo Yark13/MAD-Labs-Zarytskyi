@@ -68,6 +68,17 @@ public class SignUpActivity extends AppCompatActivity {
     private  void  SetBehaviorSignUpButton(){
         _signUpButton.setOnClickListener(view -> {
             try {
+
+                if(!_service.IsConnection()){
+                    new AlertDialog.Builder(this)
+                            .setTitle("Exception access to Database")
+                            .setMessage("Cannot use database, no connection!")
+                            .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                            .show();
+                    return;
+                }
+
+
                 TraineeModel newAccount = GetNewAccountFromView();
 
                 ValidateModel(newAccount);
@@ -144,6 +155,7 @@ public class SignUpActivity extends AppCompatActivity {
     private Boolean SignUp(TraineeModel newTrainee){
         try {
             Objects.requireNonNull(newTrainee);
+
             TraineeModel result = _service.SignUp(newTrainee);
         }
         catch (Exception e){

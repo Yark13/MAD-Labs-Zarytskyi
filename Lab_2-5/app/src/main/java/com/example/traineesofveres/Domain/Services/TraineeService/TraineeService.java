@@ -20,6 +20,8 @@ public class TraineeService implements ITraineeService{
     private final IRepository<Trainee> _repository;
     private final IPasswordManager _passwordManager;
     private final IConnectionManager _connectionManager;
+    private final ArrayList<TraineeModel> _emptyTraineeList;
+    private final TraineeModel _emptyTrainee;
 
     public TraineeService(IUnitOfWork unitOfWork, IPasswordManager passwordManager, IConnectionManager connectionManager) {
         _unitOfWork = Objects.requireNonNull(unitOfWork);
@@ -27,6 +29,19 @@ public class TraineeService implements ITraineeService{
         _connectionManager = connectionManager;
 
         _repository = _unitOfWork.GetRepository(Trainee.class);
+
+        _emptyTraineeList = new ArrayList<>();
+        _emptyTrainee = new TraineeModel();
+
+        _emptyTraineeList.add(_emptyTrainee);
+        _emptyTraineeList.add(_emptyTrainee);
+        _emptyTraineeList.add(_emptyTrainee);
+        _emptyTraineeList.add(_emptyTrainee);
+    }
+
+    @Override
+    public boolean IsConnection() {
+        return _connectionManager.isInternetAvailable();
     }
 
     @Override
@@ -34,6 +49,10 @@ public class TraineeService implements ITraineeService{
 
         if(topCount < 1 || traineeId < 1)
             throw  new NullPointerException("top count and trainee id cannot be less 1");
+
+        if(!_connectionManager.isInternetAvailable()){
+            return _emptyTraineeList;
+        }
 
         return _repository.GetTopWithRank(topCount, traineeId).stream()
                 .map(p -> new TraineeModel(p.getFirst(), p.getSecond()))
@@ -44,7 +63,9 @@ public class TraineeService implements ITraineeService{
     public TraineeModel Login(String email, String password) {
         if(IsNullOrEmpty(email) || IsNullOrEmpty(password))
             throw  new NullPointerException("email and password cannot be null or empty");
-        
+
+        if(!_connectionManager.isInternetAvailable()) return null;
+
         String hashedPassword = _passwordManager.HashPassword(password);
         Predicate<Trainee> filter = trainee ->
                 trainee.Email.equals(email) &&
@@ -61,6 +82,8 @@ public class TraineeService implements ITraineeService{
         if(id <= 0)
             throw  new ArrayIndexOutOfBoundsException();
 
+        if(!_connectionManager.isInternetAvailable()) return _emptyTrainee;
+
         return new TraineeModel(_repository.Find(id));
     }
 
@@ -70,6 +93,8 @@ public class TraineeService implements ITraineeService{
 
         if(!IsTraineeModelCorrectlyFilled(trainee) || trainee.Id != 0)
             return null;
+
+        if(!_connectionManager.isInternetAvailable()) return null;
 
         trainee.Password = _passwordManager.HashPassword(trainee.Password);
 

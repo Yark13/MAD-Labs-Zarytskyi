@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -142,6 +143,8 @@ public class QuotesFragment extends Fragment {
     }
 
     private void LoadQuotes(){
+        CheckUserConnection();
+
         isLoading = true;
         int numberItemsCurrentPage = _adapter.getItemCount()%PAGE_SIZE;
         int numberItemsToWholePage = PAGE_SIZE - numberItemsCurrentPage;
@@ -159,6 +162,16 @@ public class QuotesFragment extends Fragment {
         }
 
         isLoading = false;
+    }
+
+    private void CheckUserConnection(){
+        if(!_service.IsConnection()){
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Exception access to Database")
+                    .setMessage("Cannot use database, no connection!")
+                    .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                    .show();
+        }
     }
 }
 

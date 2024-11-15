@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.traineesofveres.DTO.Domain.TraineeModel;
 import com.example.traineesofveres.DTO.Infrastructure.Quote;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
 
@@ -53,11 +52,6 @@ public class QuoteRepository extends Repository<Quote> implements IRepository<Qu
     }
 
     @Override
-    public ArrayList<Quote> GetAll(Predicate<Quote> filter, int skip, int take) {
-        return null;
-    }
-
-    @Override
     public ArrayList<Pair<Quote, Integer>> GetTopWithRank(int topCount, int traineeId) {
         return null;
     }
@@ -77,11 +71,6 @@ public class QuoteRepository extends Repository<Quote> implements IRepository<Qu
     @Override
     public Quote Update(Quote entity) {
         return null;
-    }
-
-    @Override
-    public void Delete(int id) {
-
     }
 
     private Quote buildQuoteFromCursor(Cursor cursor) {

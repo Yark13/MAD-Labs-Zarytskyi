@@ -69,19 +69,6 @@ public class TraineeRepository extends Repository<Trainee> implements IRepositor
     }
 
     @Override
-    public ArrayList<Trainee> GetAll(Predicate<Trainee> filter, int skip, int take) {
-        ArrayList<Trainee> allTrainees = GetAll();
-        ArrayList<Trainee> filteredTrainees = new ArrayList<>();
-        for (int i = skip; i < allTrainees.size() && filteredTrainees.size() < take; i++) {
-            Trainee trainee = allTrainees.get(i);
-            if (filter.test(trainee)) {
-                filteredTrainees.add(trainee);
-            }
-        }
-        return filteredTrainees;
-    }
-
-    @Override
     public ArrayList<Pair<Trainee, Integer>> GetTopWithRank(int topCount, int traineeId) {
         ArrayList<Pair<Trainee, Integer>> resultList = new ArrayList<>();
 
@@ -149,11 +136,6 @@ public class TraineeRepository extends Repository<Trainee> implements IRepositor
         ContentValues values = getContentValuesFromTrainee(entity);
         _database.update(GetDatabaseTableName(), values, "id = ?", new String[]{String.valueOf(entity.Id)});
         return entity;
-    }
-
-    @Override
-    public void Delete(int id) {
-        _database.delete(GetDatabaseTableName(), "id = ?", new String[]{String.valueOf(id)});
     }
 
     private Trainee buildTraineeFromCursor(Cursor cursor) {

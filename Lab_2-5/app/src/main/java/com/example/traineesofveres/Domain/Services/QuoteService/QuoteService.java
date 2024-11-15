@@ -1,6 +1,7 @@
 package com.example.traineesofveres.Domain.Services.QuoteService;
 
 import com.example.traineesofveres.DTO.Infrastructure.Quote;
+import com.example.traineesofveres.Domain.Connection.ConnectionManager.IConnectionManager;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
 import com.example.traineesofveres.Domain.DALInterfaces.IUnitOfWork;
 import com.example.traineesofveres.DTO.Domain.QuoteModel;
@@ -16,15 +17,34 @@ public class QuoteService implements IQuoteService {
 
     private final IUnitOfWork _unitOfWork;
     private final IRepository<Quote> _repository;
+    private final IConnectionManager _connectionManager;
+    private final ArrayList<QuoteModel> _emptyQuoteList;
 
-    public QuoteService(IUnitOfWork unitOfWork) {
+    public QuoteService(IUnitOfWork unitOfWork, IConnectionManager connectionManager) {
         _unitOfWork = Objects.requireNonNull(unitOfWork, "unit of work cannot be null");
+        _connectionManager = Objects.requireNonNull(connectionManager, "ConnectionManager cannot be null");
+
         _repository = _unitOfWork.GetRepository(Quote.class);
+
+        _emptyQuoteList = new ArrayList<>();
+        QuoteModel emptyQuote = new QuoteModel();
+        _emptyQuoteList.add(emptyQuote);
+        _emptyQuoteList.add(emptyQuote);
+        _emptyQuoteList.add(emptyQuote);
+        _emptyQuoteList.add(emptyQuote);
+        _emptyQuoteList.add(emptyQuote);
     }
 
 
     @Override
+    public boolean IsConnection() {
+        return _connectionManager.isInternetAvailable();
+    }
+
+    @Override
     public ArrayList<QuoteModel> GetQuotes(int skip, int take) {
+        if(!_connectionManager.isInternetAvailable()) return _emptyQuoteList;
+
         ArrayList<QuoteModel> quoteModels = _repository.GetAll(skip, take)
                 .stream().map(QuoteModel::new)
                 .collect(Collectors.toCollection(ArrayList::new));

@@ -88,6 +88,15 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(email.isEmpty() || password.isEmpty()) throw new Exception("Email or password cannot be empty");
 
+                if(!_service.IsConnection()){
+                    new AlertDialog.Builder(this)
+                            .setTitle("Exception access to Database")
+                            .setMessage("Cannot use database, no connection!")
+                            .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                            .show();
+                    return;
+                }
+
                 TraineeModel accountTrainee;
                 accountTrainee = _service.Login(email, password);
 
