@@ -2,7 +2,7 @@ package com.example.traineesofveres.Application.DI.HiltModules.Infrustructure;
 
 import android.content.Context;
 
-import com.example.traineesofveres.Infrastructure.DatabaseHelper;
+import com.example.traineesofveres.Infrastructure.SqLite.DatabaseHelper;
 
 import javax.inject.Singleton;
 

@@ -1,4 +1,4 @@
-package com.example.traineesofveres.Infrastructure;
+package com.example.traineesofveres.Infrastructure.SqLite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,8 +8,8 @@ import androidx.annotation.Nullable;
 
 import com.example.traineesofveres.Domain.Security.IPasswordManager;
 import com.example.traineesofveres.Domain.Security.PasswordManager;
-import com.example.traineesofveres.Infrastructure.Repository.QuoteRepository;
-import com.example.traineesofveres.Infrastructure.Repository.TraineeRepository;
+import com.example.traineesofveres.Infrastructure.SqLite.Repository.QuoteRepository;
+import com.example.traineesofveres.Infrastructure.SqLite.Repository.TraineeRepository;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

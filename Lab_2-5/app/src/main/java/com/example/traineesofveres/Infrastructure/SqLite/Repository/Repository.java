@@ -1,4 +1,4 @@
-package com.example.traineesofveres.Infrastructure.Repository;
+package com.example.traineesofveres.Infrastructure.SqLite.Repository;
 
 import android.database.sqlite.SQLiteDatabase;
 

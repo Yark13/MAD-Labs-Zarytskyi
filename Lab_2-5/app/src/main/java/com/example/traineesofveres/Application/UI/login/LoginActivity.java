@@ -1,6 +1,5 @@
 package com.example.traineesofveres.Application.UI.login;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -20,7 +18,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.traineesofveres.DTO.Domain.TraineeModel;
 import com.example.traineesofveres.Domain.Services.TraineeService.ITraineeService;
 import com.example.traineesofveres.Application.UI.MainActivity;
-import com.example.traineesofveres.Infrastructure.DatabaseHelper;
 import com.example.traineesofveres.R;
 import com.example.traineesofveres.Application.UI.signup.SignUpActivity;
 

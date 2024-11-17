@@ -1,10 +1,9 @@
-package com.example.traineesofveres.Infrastructure.Repository;
+package com.example.traineesofveres.Infrastructure.SqLite.Repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.traineesofveres.DTO.Domain.TraineeModel;
 import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
 

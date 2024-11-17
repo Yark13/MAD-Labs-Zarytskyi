@@ -1,23 +1,21 @@
-package com.example.traineesofveres.Infrastructure.Repository;
-
-import android.database.sqlite.SQLiteDatabase;
+package com.example.traineesofveres.Infrastructure.FireStore.Repository;
 
 import com.example.traineesofveres.DTO.Infrastructure.Entity;
 import com.example.traineesofveres.DTO.Infrastructure.Quote;
 import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class RepositoryFactory {
-    private final SQLiteDatabase _database;
+public class FireStoreRepositoryFactory {
+    FirebaseFirestore _firestore;
     Map<Class<? extends Entity>, Supplier<IRepository<? extends Entity>>> _supplier = new HashMap<>();
 
-    public RepositoryFactory(SQLiteDatabase database) {
-        this._database = database;
-
+    public FireStoreRepositoryFactory(FirebaseFirestore firestore) {
+        _firestore = firestore;
         PrepareSupplier();
     }
 
@@ -28,7 +26,7 @@ public class RepositoryFactory {
     }
 
     private void PrepareSupplier(){
-        _supplier.put(Trainee.class, () -> new TraineeRepository(_database));
-        _supplier.put(Quote.class, () -> new QuoteRepository(_database));
+        _supplier.put(Trainee.class, () -> new FireStoreTraineeRepository(_firestore));
+        _supplier.put(Quote.class, () -> new FireStoreQuoteRepository(_firestore));
     }
 }

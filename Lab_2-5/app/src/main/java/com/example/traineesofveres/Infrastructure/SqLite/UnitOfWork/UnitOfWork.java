@@ -1,14 +1,12 @@
-package com.example.traineesofveres.Infrastructure.UnitOfWork;
+package com.example.traineesofveres.Infrastructure.SqLite.UnitOfWork;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
 import com.example.traineesofveres.Domain.DALInterfaces.IUnitOfWork;
 import com.example.traineesofveres.DTO.Infrastructure.Entity;
-import com.example.traineesofveres.Infrastructure.DatabaseHelper;
-import com.example.traineesofveres.Infrastructure.Repository.RepositoryFactory;
+import com.example.traineesofveres.Infrastructure.SqLite.Repository.RepositoryFactory;
 
 public class UnitOfWork implements IUnitOfWork {
 
