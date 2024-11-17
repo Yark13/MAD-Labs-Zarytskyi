@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.hilt.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -38,7 +39,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -53,4 +53,8 @@ dependencies {
     implementation(libs.hilt.android)
     annotationProcessor(libs.hilt.compiler)
     implementation(libs.konfetti)
+
+    implementation(platform(libs.firebase.bom))
+    implementation (libs.firebase.firestore)
+    implementation(libs.firebase.analytics)
 }

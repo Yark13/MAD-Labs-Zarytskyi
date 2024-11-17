@@ -129,7 +129,7 @@ public class TraineeService implements ITraineeService{
         if(IsNullOrEmpty(email))
             throw new NullPointerException("email cannot be null");
             
-        return _repository.GetAll(trainee -> trainee.Email.equals(email) && trainee.Id != id).size() == 0;
+        return _repository.GetAll(trainee -> trainee.Email.equals(email) && trainee.Id != id).isEmpty();
     }
 
     @Override
