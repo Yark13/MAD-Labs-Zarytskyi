@@ -20,7 +20,6 @@ public class FireStoreRepositoryFactory {
     }
 
     public <T extends Entity> IRepository<T> GetRepository(Class<T> classT){
-
         IRepository<T> repository = (IRepository<T>) _supplier.get(classT).get();;
         return repository;
     }

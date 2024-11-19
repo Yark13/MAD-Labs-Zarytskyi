@@ -159,7 +159,11 @@ public class SignUpActivity extends AppCompatActivity {
             TraineeModel result = _service.SignUp(newTrainee);
         }
         catch (Exception e){
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            new AlertDialog.Builder(SignUpActivity.this)
+                    .setTitle("Error")
+                    .setMessage(e.getMessage())
+                    .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                    .show();
 
             return false;
         }

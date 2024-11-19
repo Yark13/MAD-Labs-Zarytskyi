@@ -1,8 +1,8 @@
 package com.example.traineesofveres.Application.DI.HiltModules;
 
 import com.example.traineesofveres.Domain.DALInterfaces.IUnitOfWork;
-import com.example.traineesofveres.Infrastructure.SqLite.DatabaseHelper;
-import com.example.traineesofveres.Infrastructure.SqLite.UnitOfWork.UnitOfWork;
+import com.example.traineesofveres.Infrastructure.FireStore.UnitOfWork.FirestoreUnitOfWork;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import javax.inject.Singleton;
 
@@ -17,7 +17,7 @@ public class IUnitOfWorkModule {
 
     @Provides
     @Singleton
-    public static IUnitOfWork provideUnitOfWork(DatabaseHelper dbHelper){
-        return new UnitOfWork(dbHelper);
+    public static IUnitOfWork provideUnitOfWork(FirebaseFirestore firestore){
+        return new FirestoreUnitOfWork(firestore);
     }
 }

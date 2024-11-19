@@ -1,19 +1,30 @@
 package com.example.traineesofveres.Infrastructure.FireStore.Repository;
 
+import android.nfc.Tag;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
 import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import kotlin.Pair;
 
 public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> implements IRepository<Trainee> {
-    private static final String _collectionPath = "trainee";
+    private static final String _collectionPath = "trainees";
 
     public FireStoreTraineeRepository(FirebaseFirestore firestore) {
         super(firestore, _collectionPath);
@@ -62,7 +73,7 @@ public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> imp
     @Override
     public ArrayList<Pair<Trainee, Integer>> GetTopWithRank(int topCount, int traineeId) {
         ArrayList<Pair<Trainee, Integer>> rankedTrainees = new ArrayList<>();
-        _collection.orderBy("rank") // Assuming "rank" is a field in your Firestore documents
+        _collection.orderBy("rank")
                 .limit(topCount)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -90,7 +101,21 @@ public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> imp
 
     @Override
     public Trainee Add(Trainee entity) {
-        _collection.add(entity);
+        Map<String, Object> doc = new HashMap<>();
+        doc.put("id", entity.Id);
+        doc.put("name", entity.Name);
+        doc.put("surname", entity.Surname);
+        doc.put("email", entity.Email);
+        doc.put("password", entity.Password);
+        doc.put("age", entity.Age);
+        doc.put("score", entity.Score);
+
+        DocumentReference newTrainee = _collection.document();
+
+        newTrainee.set(doc)
+                .addOnSuccessListener(aVoid -> Log.d("My firestore tags", "DocumentSnapshot successfully written!"))
+                .addOnFailureListener(e -> Log.w("My firestore tags", "Error writing document", e));
+        //_collection.add(entity);
         return entity;
     }
 
