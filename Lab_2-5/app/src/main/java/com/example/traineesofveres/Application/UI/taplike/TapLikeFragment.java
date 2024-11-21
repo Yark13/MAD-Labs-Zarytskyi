@@ -35,8 +35,8 @@ public class TapLikeFragment extends Fragment {
     private TextView _scoreTextView;
     private KonfettiView _konfettiView;
 
-    private int _numberOfLikeTaps = 0;
-    private final int _frequentlySaveInDbCounterInLikes = 5;
+    private int _counterNewLikeTaps = 0;
+    private final int _frequentlySaveInDbCounterInLikes = 50;
 
     public static TapLikeFragment newInstance(int traineeId) {
         TapLikeFragment fragment = new TapLikeFragment();
@@ -73,7 +73,7 @@ public class TapLikeFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
-        _numberOfLikeTaps = 0;
+        _counterNewLikeTaps = 0;
         _service.UpdateTrainee(_account);
     }
 
@@ -85,7 +85,7 @@ public class TapLikeFragment extends Fragment {
 
     private void SetBehaviorTapLikeButton(){
         _tapLikeButton.setOnClickListener(view -> {
-            _numberOfLikeTaps++;
+            _counterNewLikeTaps++;
             _account.Score++;
             _scoreTextView.setText(Integer.toString(_account.Score));
 
@@ -100,8 +100,8 @@ public class TapLikeFragment extends Fragment {
                     .setPosition(-50f, _konfettiView.getWidth() + 50f, -50f, -50f)
                     .streamFor(300, 5000L);
 
-            if(_numberOfLikeTaps == _frequentlySaveInDbCounterInLikes){
-                _numberOfLikeTaps = 0;
+            if(_counterNewLikeTaps == _frequentlySaveInDbCounterInLikes){
+                _counterNewLikeTaps = 0;
                 _service.UpdateTrainee(_account);
             }
         });

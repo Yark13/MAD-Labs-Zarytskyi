@@ -1,20 +1,33 @@
 package com.example.traineesofveres.Infrastructure.FireStore.Repository;
 
+import android.util.Log;
+
 import com.example.traineesofveres.DTO.Infrastructure.Quote;
 import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.checkerframework.checker.units.qual.A;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.function.Predicate;
 
 import kotlin.Pair;
 
 public class FireStoreQuoteRepository  extends FireStoreRepository<Quote> implements IRepository<Quote> {
     private static final String _collectionPath = "quote";
+
+    private static int _quotesId = 0;
+
+    private final String _quotesIdField = "Id";
 
     public FireStoreQuoteRepository(FirebaseFirestore firestore) {
         super(firestore, _collectionPath);
@@ -23,14 +36,31 @@ public class FireStoreQuoteRepository  extends FireStoreRepository<Quote> implem
     @Override
     public ArrayList<Quote> GetAll() {
         ArrayList<Quote> quotes = new ArrayList<>();
-        Task<QuerySnapshot> task = _collection.get();
-        task.addOnSuccessListener(queryDocumentSnapshots -> {
-            for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                Quote quote = doc.toObject(Quote.class);
-                quote.Id = Integer.parseInt(doc.getId());
-                quotes.add(quote);
+
+        Thread thread = new Thread(() -> {
+            try {
+                QuerySnapshot querySnapshot = Tasks.await(_collection.get());
+                for (QueryDocumentSnapshot document : querySnapshot) {
+                    Quote quote = document.toObject(Quote.class);
+                    quotes.add(quote);
+                }
+                Log.d("Firestore logs", "Successfully fetched trainees.");
+            } catch (ExecutionException e) {
+                Log.e("Firestore logs", "ExecutionException: Failed to fetch data", e);
+            } catch (InterruptedException e) {
+                Log.e("Firestore logs", "InterruptedException: Task was interrupted", e);
+                Thread.currentThread().interrupt();
             }
         });
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            Log.e("Firestore logs", "Main thread interrupted while waiting", e);
+            Thread.currentThread().interrupt();
+        }
+
         return quotes;
     }
 
@@ -38,9 +68,9 @@ public class FireStoreQuoteRepository  extends FireStoreRepository<Quote> implem
     public ArrayList<Quote> GetAll(Predicate<Quote> filter) {
         ArrayList<Quote> allQuotes = GetAll();
         ArrayList<Quote> filteredQuotes = new ArrayList<>();
-        for (Quote quote : allQuotes) {
-            if (filter.test(quote)) {
-                filteredQuotes.add(quote);
+        for (Quote trainee : allQuotes) {
+            if (filter.test(trainee)) {
+                filteredQuotes.add(trainee);
             }
         }
         return filteredQuotes;
@@ -49,49 +79,88 @@ public class FireStoreQuoteRepository  extends FireStoreRepository<Quote> implem
     @Override
     public ArrayList<Quote> GetAll(int skip, int take) {
         ArrayList<Quote> quotes = new ArrayList<>();
-        _collection.limit(take)
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                        Quote quote = doc.toObject(Quote.class);
-                        quotes.add(quote);
+
+        Thread thread = new Thread(() -> {
+            try {
+                Query query = _collection.startAfter(skip).limit(take);
+                QuerySnapshot querySnapshot = Tasks.await(query.get());
+
+                if (!querySnapshot.isEmpty()) {
+                    for (DocumentSnapshot document : querySnapshot.getDocuments()) {
+                        Quote trainee = document.toObject(Quote.class);
+                        quotes.add(trainee);
                     }
-                });
+                    Log.d("Firestore logs", "Trainees from " + skip + " to " + skip+take + " found.");
+                } else {
+                    Log.d("Firestore logs", "No Trainee founds ");
+                }
+            } catch (ExecutionException e) {
+                Log.e("Firestore logs", "ExecutionException: Failed to fetch Trainee", e);
+            } catch (InterruptedException e) {
+                Log.e("Firestore logs", "InterruptedException: Task was interrupted", e);
+                Thread.currentThread().interrupt();
+            }
+        });
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            Log.e("Firestore logs", "Main thread interrupted while waiting", e);
+            Thread.currentThread().interrupt();
+        }
+
         return quotes;
     }
 
     @Override
     public ArrayList<Pair<Quote, Integer>> GetTopWithRank(int topCount, int traineeId) {
-        ArrayList<Pair<Quote, Integer>> rankedQuotes = new ArrayList<>();
-        _collection.orderBy("rank")
-                .limit(topCount)
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    int rank = 1;
-                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                        Quote quote = doc.toObject(Quote.class);
-                        rankedQuotes.add(new Pair<>(quote, rank++));
-                    }
-                });
-        return rankedQuotes;
+        return new ArrayList<>();
     }
 
     @Override
     public Quote Find(int id) {
-        Task<QuerySnapshot> task = _collection.whereEqualTo("id", id).get();
-        final Quote[] result = new Quote[1];
-        task.addOnSuccessListener(queryDocumentSnapshots -> {
-            for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                result[0] = doc.toObject(Quote.class);
-                result[0].Id = id;
+        final Quote[] foundQuote = {null};
+
+        Thread thread = new Thread(() -> {
+            try {
+                Query query = _collection.whereEqualTo(_quotesIdField, id);
+                QuerySnapshot querySnapshot = Tasks.await(query.get());
+
+                if (!querySnapshot.isEmpty()) {
+                    DocumentSnapshot document = querySnapshot.getDocuments().get(0);
+                    foundQuote[0] = document.toObject(Quote.class);
+                    Log.d("Firestore logs", "Trainee with id " + id + " found.");
+                } else {
+                    Log.d("Firestore logs", "No Trainee found with id " + id);
+                }
+            } catch (ExecutionException e) {
+                Log.e("Firestore logs", "ExecutionException: Failed to fetch Trainee", e);
+            } catch (InterruptedException e) {
+                Log.e("Firestore logs", "InterruptedException: Task was interrupted", e);
+                Thread.currentThread().interrupt();
             }
         });
-        return result[0];
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            Log.e("Firestore logs", "Main thread interrupted while waiting", e);
+            Thread.currentThread().interrupt();
+        }
+
+        return foundQuote[0];
     }
 
     @Override
     public Quote Add(Quote entity) {
-        _collection.add(entity);
+        entity.Id = GetNewId();
+        DocumentReference newTrainee = _collection.document(Integer.toString(entity.Id));
+
+        newTrainee.set(entity)
+                .addOnSuccessListener(aVoid -> Log.d("My firestore tags", "DocumentSnapshot successfully written!"))
+                .addOnFailureListener(e -> Log.w("My firestore tags", "Error writing document", e));
         return entity;
     }
 
@@ -99,5 +168,10 @@ public class FireStoreQuoteRepository  extends FireStoreRepository<Quote> implem
     public Quote Update(Quote entity) {
         _collection.document(String.valueOf(entity.Id)).set(entity);
         return entity;
+    }
+
+    private int GetNewId(){
+        _quotesId++;
+        return _quotesId;
     }
 }

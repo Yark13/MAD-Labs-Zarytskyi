@@ -7,12 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,20 +16,15 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 import java.util.function.Predicate;
 
 import kotlin.Pair;
 
 public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> implements IRepository<Trainee> {
     private static final String _collectionPath = "trainees";
+    private static int _traineesId = 0;
 
     private final String _traineeIdField = "Id";
     private final String _traineeScoreField = "Score";
@@ -129,7 +119,7 @@ public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> imp
 
         Thread thread = new Thread(() -> {
             try {
-                Query query = _collection.orderBy(_traineeScoreField);
+                Query query = _collection.orderBy(_traineeScoreField, Query.Direction.DESCENDING);
                 QuerySnapshot querySnapshot = Tasks.await(query.get());
 
                 if (!querySnapshot.isEmpty()) {
@@ -202,7 +192,7 @@ public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> imp
 
     @Override
     public Trainee Add(Trainee entity) {
-        entity.Id = Trainee.GetNewId();
+        entity.Id = GetNewId();
         DocumentReference newTrainee = _collection.document(Integer.toString(entity.Id));
 
         newTrainee.set(entity)
@@ -215,5 +205,10 @@ public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> imp
     public Trainee Update(Trainee entity) {
         _collection.document(String.valueOf(entity.Id)).set(entity);
         return entity;
+    }
+
+    private int GetNewId(){
+        _traineesId++;
+        return _traineesId;
     }
 }
