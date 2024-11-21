@@ -23,14 +23,15 @@ import java.util.function.Predicate;
 import kotlin.Pair;
 
 public class FireStoreQuoteRepository  extends FireStoreRepository<Quote> implements IRepository<Quote> {
-    private static final String _collectionPath = "quote";
-
-    private static int _quotesId = 0;
+    private static final String _collectionPath = "quotes";
 
     private final String _quotesIdField = "Id";
 
+    private int _quotesId = 0;
+
     public FireStoreQuoteRepository(FirebaseFirestore firestore) {
         super(firestore, _collectionPath);
+        _quotesId = GetLastId();
     }
 
     @Override
@@ -168,6 +169,36 @@ public class FireStoreQuoteRepository  extends FireStoreRepository<Quote> implem
     public Quote Update(Quote entity) {
         _collection.document(String.valueOf(entity.Id)).set(entity);
         return entity;
+    }
+
+    private int GetLastId(){
+        final int[] lastId = {0};
+
+        Thread thread = new Thread(() -> {
+            try {
+                Query query = _collection
+                        .orderBy(_quotesIdField, Query.Direction.DESCENDING)
+                        .limit(1);
+
+                QuerySnapshot snapshot = Tasks.await(query.get());
+
+                lastId[0] = Integer.parseInt(snapshot.getDocuments().get(0).getId());
+
+            }
+            catch (Exception e){
+
+            }
+        });
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            Log.e("Firestore logs", "Main thread interrupted while waiting", e);
+            Thread.currentThread().interrupt();
+        }
+
+        return lastId[0];
     }
 
     private int GetNewId(){

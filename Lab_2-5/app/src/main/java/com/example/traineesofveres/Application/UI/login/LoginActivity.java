@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        //if(AutoLogin()) return;
+        if(AutoLogin()) return;
 
         FindingViewElements();
 

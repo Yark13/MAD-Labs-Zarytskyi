@@ -24,13 +24,14 @@ import kotlin.Pair;
 
 public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> implements IRepository<Trainee> {
     private static final String _collectionPath = "trainees";
-    private static int _traineesId = 0;
+    private int _traineesId = 0;
 
     private final String _traineeIdField = "Id";
     private final String _traineeScoreField = "Score";
 
     public FireStoreTraineeRepository(FirebaseFirestore firestore) {
         super(firestore, _collectionPath);
+        _traineesId = GetLastId();
     }
 
     @Override
@@ -205,6 +206,36 @@ public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> imp
     public Trainee Update(Trainee entity) {
         _collection.document(String.valueOf(entity.Id)).set(entity);
         return entity;
+    }
+
+    private int GetLastId(){
+        final int[] lastId = {0};
+
+        Thread thread = new Thread(() -> {
+            try {
+                Query query = _collection
+                        .orderBy(_traineeIdField, Query.Direction.DESCENDING)
+                        .limit(1);
+
+                QuerySnapshot snapshot = Tasks.await(query.get());
+
+                lastId[0] = Integer.parseInt(snapshot.getDocuments().get(0).getId());
+
+            }
+            catch (Exception e){
+
+            }
+        });
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            Log.e("Firestore logs", "Main thread interrupted while waiting", e);
+            Thread.currentThread().interrupt();
+        }
+
+        return lastId[0];
     }
 
     private int GetNewId(){

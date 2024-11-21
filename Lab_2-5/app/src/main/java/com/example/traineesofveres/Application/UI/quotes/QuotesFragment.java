@@ -149,7 +149,7 @@ public class QuotesFragment extends Fragment {
         int numberItemsCurrentPage = _adapter.getItemCount()%PAGE_SIZE;
         int numberItemsToWholePage = PAGE_SIZE - numberItemsCurrentPage;
 
-        ArrayList<QuoteModel> newQuotes = _service.GetQuotes(currentPage * PAGE_SIZE+numberItemsCurrentPage, numberItemsToWholePage);
+        ArrayList<QuoteModel> newQuotes = new ArrayList<>();
         if (newQuotes != null && !newQuotes.isEmpty()) {
 
             ArrayList<QuoteViewModel> newViewModels = newQuotes.stream()
