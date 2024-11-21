@@ -73,8 +73,7 @@ public class TraineeService implements ITraineeService{
 
         List<Trainee> trainees = _repository.GetAll(filter);
 
-        return (trainees.isEmpty())? null : new TraineeModel(trainees
-                        .get(0));
+        return (trainees.isEmpty())? null : new TraineeModel(trainees.get(0));
     }
 
     @Override
