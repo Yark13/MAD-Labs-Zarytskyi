@@ -1,5 +1,7 @@
 package com.example.traineesofveres.DTO.Infrastructure;
 
-public abstract class Entity {
+import java.io.Serializable;
+
+public abstract class Entity implements Serializable {
     public int Id;
 }

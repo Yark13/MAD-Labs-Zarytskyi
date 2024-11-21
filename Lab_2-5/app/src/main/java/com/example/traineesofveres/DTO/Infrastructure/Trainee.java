@@ -5,6 +5,8 @@ import com.example.traineesofveres.DTO.Domain.TraineeModel;
 import java.util.Objects;
 
 public class Trainee extends Entity {
+    private static int _numberTrainees = 1;
+
     public String Name;
 
     public String Surname;
@@ -32,5 +34,8 @@ public class Trainee extends Entity {
         Score = traineeModel.Score;
     }
 
-
+    public static int GetNewId(){
+        _numberTrainees++;
+        return _numberTrainees;
+    }
 }

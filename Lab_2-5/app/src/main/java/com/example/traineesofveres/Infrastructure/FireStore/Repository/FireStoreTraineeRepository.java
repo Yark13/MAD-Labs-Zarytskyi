@@ -7,9 +7,12 @@ import androidx.annotation.NonNull;
 
 import com.example.traineesofveres.DTO.Infrastructure.Trainee;
 import com.example.traineesofveres.Domain.DALInterfaces.IRepository;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -19,12 +22,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.function.Predicate;
 
 import kotlin.Pair;
 
 public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> implements IRepository<Trainee> {
     private static final String _collectionPath = "trainees";
+
+    private CountDownLatch doneSignal = new CountDownLatch(1);
 
     public FireStoreTraineeRepository(FirebaseFirestore firestore) {
         super(firestore, _collectionPath);
@@ -33,16 +42,62 @@ public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> imp
     @Override
     public ArrayList<Trainee> GetAll() {
         ArrayList<Trainee> trainees = new ArrayList<>();
-        Task<QuerySnapshot> task = _collection.get();
-        task.addOnSuccessListener(queryDocumentSnapshots -> {
-            for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                Trainee trainee = doc.toObject(Trainee.class);
-                trainee.Id = Integer.parseInt(doc.getId());
-                trainees.add(trainee);
+
+        Thread thread = new Thread(() -> {
+            try {
+                QuerySnapshot querySnapshot = Tasks.await(_collection.get());
+                for (QueryDocumentSnapshot document : querySnapshot) {
+                    Trainee trainee = document.toObject(Trainee.class);
+                    trainees.add(trainee);
+                }
+                Log.d("Firestore logs", "Successfully fetched trainees.");
+            } catch (ExecutionException e) {
+                Log.e("Firestore logs", "ExecutionException: Failed to fetch data", e);
+            } catch (InterruptedException e) {
+                Log.e("Firestore logs", "InterruptedException: Task was interrupted", e);
+                Thread.currentThread().interrupt(); // Restore interrupted state
             }
         });
+
+        thread.start();
+        try {
+            thread.join(); // Wait for the thread to finish
+        } catch (InterruptedException e) {
+            Log.e("Firestore logs", "Main thread interrupted while waiting", e);
+            Thread.currentThread().interrupt();
+        }
+
         return trainees;
     }
+
+//    @Override
+//    public ArrayList<Trainee> GetAll() {
+//        ArrayList<Trainee> trainees = new ArrayList<>();
+//
+//        try {
+//            QuerySnapshot authResult = Tasks.await( _collection.get()
+//                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                            if (task.isSuccessful()) {
+//                                for (QueryDocumentSnapshot document : task.getResult()) {
+//                                    Trainee trainee = document.toObject(Trainee.class);
+//                                    trainees.add(trainee);
+//                                }
+//
+//                                Log.d("FireStore logs", "Successfully got trainees");
+//                            } else {
+//                                Log.w("FireStore logs", "Error getting documents.", task.getException());
+//                            }
+//                        }
+//                    }));
+//        }
+//        catch (Exception e){
+//
+//        }
+//
+//        return  trainees;
+//    }
 
     @Override
     public ArrayList<Trainee> GetAll(Predicate<Trainee> filter) {
@@ -101,21 +156,12 @@ public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> imp
 
     @Override
     public Trainee Add(Trainee entity) {
-        Map<String, Object> doc = new HashMap<>();
-        doc.put("id", entity.Id);
-        doc.put("name", entity.Name);
-        doc.put("surname", entity.Surname);
-        doc.put("email", entity.Email);
-        doc.put("password", entity.Password);
-        doc.put("age", entity.Age);
-        doc.put("score", entity.Score);
+        entity.Id = Trainee.GetNewId();
+        DocumentReference newTrainee = _collection.document(Integer.toString(entity.Id));
 
-        DocumentReference newTrainee = _collection.document();
-
-        newTrainee.set(doc)
+        newTrainee.set(entity)
                 .addOnSuccessListener(aVoid -> Log.d("My firestore tags", "DocumentSnapshot successfully written!"))
                 .addOnFailureListener(e -> Log.w("My firestore tags", "Error writing document", e));
-        //_collection.add(entity);
         return entity;
     }
 
