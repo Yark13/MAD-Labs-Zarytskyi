@@ -83,7 +83,7 @@ public class FireStoreQuoteRepository  extends FireStoreRepository<Quote> implem
 
         Thread thread = new Thread(() -> {
             try {
-                Query query = _collection.orderBy(_quotesIdField).startAt(skip).limit(take);
+                Query query = _collection.orderBy(_quotesIdField).startAfter(skip).limit(take);
                 QuerySnapshot querySnapshot = Tasks.await(query.get());
 
                 if (!querySnapshot.isEmpty()) {

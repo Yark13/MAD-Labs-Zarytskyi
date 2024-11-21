@@ -123,12 +123,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private  void  SetBehaviorSignUpButton(){
-        _signUpButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-                startActivity(intent);
-            }
+        _signUpButton.setOnClickListener(view -> {
+            Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+            startActivity(intent);
         });
     }
 

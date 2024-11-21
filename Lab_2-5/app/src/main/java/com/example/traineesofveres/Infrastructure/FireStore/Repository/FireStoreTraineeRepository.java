@@ -83,7 +83,7 @@ public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> imp
 
         Thread thread = new Thread(() -> {
             try {
-                Query query = _collection.orderBy(_traineeIdField).startAt(skip).limit(take);
+                Query query = _collection.orderBy(_traineeIdField).startAfter(skip).limit(take);
                 QuerySnapshot querySnapshot = Tasks.await(query.get());
 
                 if (!querySnapshot.isEmpty()) {

@@ -65,9 +65,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "INSERT INTO quotes (text, traineePublisherId, dateOfPublication) VALUES ('Як виявилось AI, то не панацея', '3', '25.10.2024');",
                 "INSERT INTO quotes (text, traineePublisherId, dateOfPublication) VALUES ('Я вас зараз додам в .gitignore. Вам це не сподобається', '2', '23.10.2024');",
                 "INSERT INTO quotes (text, traineePublisherId, dateOfPublication) VALUES ('Я у мами інженер', '2', '23.10.2024');",
-                "INSERT INTO quotes (text, traineePublisherId, dateOfPublication) VALUES ('Я на вас гавкаю не тому, що я квадробер, просто після Вашого коду, чомусь хочеться гавкати;', '1', '22.10.2024')",
-                "INSERT INTO quotes (text, traineePublisherId, dateOfPublication) VALUES ('Мілості прошу к нашому шалашу;', '5', '22.10.2024')",
-                "INSERT INTO quotes (text, traineePublisherId, dateOfPublication) VALUES ('Якщо закриваються двері, то відкриваються інші. Якщо ви думаєте, шо це з психології, то ні це про радянське машинобудування;', '4', '02.09.2024')"
+                "INSERT INTO quotes (text, traineePublisherId, dateOfPublication) VALUES ('Я на вас гавкаю не тому, що я квадробер, просто після Вашого коду, чомусь хочеться гавкати', '1', '22.10.2024')",
+                "INSERT INTO quotes (text, traineePublisherId, dateOfPublication) VALUES ('Мілості прошу к нашому шалашу', '5', '22.10.2024')",
+                "INSERT INTO quotes (text, traineePublisherId, dateOfPublication) VALUES ('Якщо закриваються двері, то відкриваються інші. Якщо ви думаєте, шо це з психології, то ні це про радянське машинобудування', '4', '02.09.2024')"
 
         };
 
