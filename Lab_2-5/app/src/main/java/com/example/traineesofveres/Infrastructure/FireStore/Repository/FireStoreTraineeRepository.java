@@ -22,6 +22,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
@@ -34,6 +35,9 @@ import kotlin.Pair;
 
 public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> implements IRepository<Trainee> {
     private static final String _collectionPath = "trainees";
+
+    private final String _traineeIdField = "Id";
+    private final String _traineeScoreField = "Score";
 
     public FireStoreTraineeRepository(FirebaseFirestore firestore) {
         super(firestore, _collectionPath);
@@ -84,23 +88,81 @@ public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> imp
 
     @Override
     public ArrayList<Trainee> GetAll(int skip, int take) {
-        return new ArrayList<>(GetAll().subList(skip, skip+take));
+        ArrayList<Trainee> trainees = new ArrayList<>();
+
+        Thread thread = new Thread(() -> {
+            try {
+                Query query = _collection.startAfter(skip).limit(take);
+                QuerySnapshot querySnapshot = Tasks.await(query.get());
+
+                if (!querySnapshot.isEmpty()) {
+                    for (DocumentSnapshot document : querySnapshot.getDocuments()) {
+                        Trainee trainee = document.toObject(Trainee.class);
+                        trainees.add(trainee);
+                    }
+                    Log.d("Firestore logs", "Trainees from " + skip + " to " + skip+take + " found.");
+                } else {
+                    Log.d("Firestore logs", "No Trainee founds ");
+                }
+            } catch (ExecutionException e) {
+                Log.e("Firestore logs", "ExecutionException: Failed to fetch Trainee", e);
+            } catch (InterruptedException e) {
+                Log.e("Firestore logs", "InterruptedException: Task was interrupted", e);
+                Thread.currentThread().interrupt();
+            }
+        });
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            Log.e("Firestore logs", "Main thread interrupted while waiting", e);
+            Thread.currentThread().interrupt();
+        }
+
+        return trainees;
     }
 
     @Override
     public ArrayList<Pair<Trainee, Integer>> GetTopWithRank(int topCount, int traineeId) {
-        ArrayList<Pair<Trainee, Integer>> rankedTrainees = new ArrayList<>();
-        _collection.orderBy("rank")
-                .limit(topCount)
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    int rank = 1;
-                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                        Trainee trainee = doc.toObject(Trainee.class);
-                        rankedTrainees.add(new Pair<>(trainee, rank++));
+        ArrayList<Pair<Trainee, Integer>> trainees = new ArrayList<>();
+
+        Thread thread = new Thread(() -> {
+            try {
+                Query query = _collection.orderBy(_traineeScoreField);
+                QuerySnapshot querySnapshot = Tasks.await(query.get());
+
+                if (!querySnapshot.isEmpty()) {
+                    List<DocumentSnapshot> docs = querySnapshot.getDocuments();
+                    for (int i = 0; i < Math.min(docs.size(), topCount); i++) {
+                        Trainee trainee = docs.get(i).toObject(Trainee.class);
+                        trainees.add(new Pair<>(trainee, i+1));
                     }
-                });
-        return rankedTrainees;
+
+                    DocumentSnapshot traineeDoc = docs.stream().filter(d -> d.getId().equals(Integer.toString(traineeId))).findFirst().orElse(null);
+
+                    trainees.add(new Pair<>(traineeDoc.toObject(Trainee.class), docs.indexOf(traineeDoc)+1));
+                    Log.d("Firestore logs", "Ranked trainees from got found.");
+                } else {
+                    Log.d("Firestore logs", "No Trainee founds ");
+                }
+            } catch (ExecutionException e) {
+                Log.e("Firestore logs", "ExecutionException: Failed to fetch ranked Trainees", e);
+            } catch (InterruptedException e) {
+                Log.e("Firestore logs", "InterruptedException: Task was interrupted", e);
+                Thread.currentThread().interrupt();
+            }
+        });
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            Log.e("Firestore logs", "Main thread interrupted while waiting", e);
+            Thread.currentThread().interrupt();
+        }
+
+        return trainees;
     }
 
     @Override
@@ -109,7 +171,7 @@ public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> imp
 
         Thread thread = new Thread(() -> {
             try {
-                Query query = _collection.whereEqualTo("Id", id);
+                Query query = _collection.whereEqualTo(_traineeIdField, id);
                 QuerySnapshot querySnapshot = Tasks.await(query.get());
 
                 if (!querySnapshot.isEmpty()) {
