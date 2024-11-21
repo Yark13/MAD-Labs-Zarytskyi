@@ -125,12 +125,11 @@ public class FireStoreQuoteRepository  extends FireStoreRepository<Quote> implem
 
         Thread thread = new Thread(() -> {
             try {
-                Query query = _collection.whereEqualTo(_quotesIdField, id);
-                QuerySnapshot querySnapshot = Tasks.await(query.get());
+                DocumentReference docRef = _collection.document(Integer.toString(id));
+                DocumentSnapshot doc = Tasks.await(docRef.get());
 
-                if (!querySnapshot.isEmpty()) {
-                    DocumentSnapshot document = querySnapshot.getDocuments().get(0);
-                    foundQuote[0] = document.toObject(Quote.class);
+                if (doc.exists()) {
+                    foundQuote[0] = doc.toObject(Quote.class);
                     Log.d("Firestore logs", "Trainee with id " + id + " found.");
                 } else {
                     Log.d("Firestore logs", "No Trainee found with id " + id);

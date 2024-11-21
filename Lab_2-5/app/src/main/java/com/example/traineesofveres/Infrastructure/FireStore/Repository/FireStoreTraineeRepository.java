@@ -162,12 +162,11 @@ public class FireStoreTraineeRepository extends FireStoreRepository<Trainee> imp
 
         Thread thread = new Thread(() -> {
             try {
-                Query query = _collection.whereEqualTo(_traineeIdField, id);
-                QuerySnapshot querySnapshot = Tasks.await(query.get());
+                DocumentReference docRef = _collection.document(Integer.toString(id));
+                DocumentSnapshot  doc = Tasks.await(docRef.get());
 
-                if (!querySnapshot.isEmpty()) {
-                    DocumentSnapshot document = querySnapshot.getDocuments().get(0); // Assuming `id` is unique
-                    foundTrainee[0] = document.toObject(Trainee.class);
+                if (doc.exists()) {
+                    foundTrainee[0] = doc.toObject(Trainee.class);
                     Log.d("Firestore logs", "Trainee with id " + id + " found.");
                 } else {
                     Log.d("Firestore logs", "No Trainee found with id " + id);
