@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "878245679862",
+    "firebase_url": "https://traineeofveresdb-default-rtdb.firebaseio.com",
+    "project_id": "traineeofveresdb",
+    "storage_bucket": "traineeofveresdb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878245679862:android:dab20aeeac5676188052d7",
+        "android_client_info": {
+          "package_name": "com.example.traineesofveres"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCfLKd0y-J_34YRUjLE0PO8KBzJJFlDIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

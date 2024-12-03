@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/profile"
+        android:title=""
+        />
+    <item
+        android:id="@+id/navigation_taplike"
+        android:icon="@drawable/like"
+        android:title=""
+        />
+    <item
+        android:id="@+id/navigation_quotes"
+        android:icon="@drawable/quotes"
+        android:title=""
+        />
+    <item
+        android:id="@+id/navigation_toplist"
+        android:icon="@drawable/top"
+        android:title=""
+        />
+</menu>
